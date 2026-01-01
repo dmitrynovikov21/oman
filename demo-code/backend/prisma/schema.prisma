@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Case {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Основная информация
+  caseNumber String
+  court      String
+  plaintiff  String // Истец
+  defendant  String // Ответчик
+  status     String @default("in_progress") // in_progress, closed, etc.
+
+  // Связи
+  documents Document[]
+
+  // Сгенерированный отчет
+  aiReport String? @db.Text
+
+  // Заметки (если они хранятся отдельно, но по задаче это один из источников)
+  // Мы можем хранить их как Documents с типом MEETING_NOTE или отдельным полем.
+  // По задаче Meeting Notes - это один из источников.
+  // Для простоты UI часто хранит простые заметки в поле, но "аудиозаписи встреч" будут документами.
+  meetingNotes String? @db.Text 
+}
+
+model Document {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name     String
+  mimeType String // application/pdf, audio/mpeg, etc.
+  path     String // Путь к файлу в хранилище (локально или S3)
+  size     Int
+
+  // Категория документа (откуда он пришел)
+  category DocumentCategory
+
+  // Тип контента (для внутренней логики)
+  type DocumentType
+
+  // Извлеченный текст для ИИ
+  extractedText String? @db.Text
+
+  // Статус обработки
+  status ProcessingStatus @default(PENDING)
+
+  caseId String
+  case   Case   @relation(fields: [caseId], references: [id])
+}
+
+enum DocumentCategory {
+  COURT_APPOINTMENT
+  PLAINTIFF
+  DEFENDANT
+  MEETING_NOTES
+}
+
+enum DocumentType {
+  FILE  // PDF, DOCX, IMG
+  AUDIO // MP3, WAV
+}
+
+enum ProcessingStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
