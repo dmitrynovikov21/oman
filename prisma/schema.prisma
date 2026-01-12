@@ -1,0 +1,272 @@
+// ExpertOS - Prisma Schema (SQLite for dev, PostgreSQL for prod)
+// Digital Factory for Judicial Experts in Oman
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// =====================
+// USER & AUTH
+// =====================
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String    @default("USER") // SUPER_ADMIN, ORG_ADMIN, EXPERT, USER
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Stripe fields
+  stripeCustomerId       String?   @unique @map("stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map("stripe_subscription_id")
+  stripePriceId          String?   @map("stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map("stripe_current_period_end")
+
+  accounts Account[]
+  sessions Session[]
+  cases    Case[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// =====================
+// CASES
+// =====================
+
+model Case {
+  id              String     @id @default(cuid())
+  caseNumber      String     @map("case_number")
+  year            Int
+  courtName       String?    @map("court_name")
+  status          String     @default("DRAFT") // DRAFT, ACTIVE, REVIEW, CLOSED
+  assignedDate    DateTime?  @map("assigned_date")
+  deadlineDate    DateTime?  @map("deadline_date")
+  
+  // Payment tracking
+  feeAmount       Float?     @map("fee_amount")
+  paymentStatus   String     @default("UNPAID") @map("payment_status") // UNPAID, PAID
+  
+  plaintiffName   String?    @map("plaintiff_name")
+  defendantName   String?    @map("defendant_name")
+  userId          String?    @map("user_id")
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+
+  user            User?      @relation(fields: [userId], references: [id])
+  documents       Document[]
+  calculations    Calculation[]
+  meetings        Meeting[]
+
+  @@unique([caseNumber, year])
+  @@map("cases")
+}
+
+// =====================
+// DOCUMENTS
+// =====================
+
+model Document {
+  id              String   @id @default(cuid())
+  caseId          String   @map("case_id")
+  name            String
+  originalName    String?  @map("original_name")
+  filePath        String?  @map("file_path")
+  fileSize        Int?     @map("file_size")
+  mimeType        String?  @map("mime_type")
+  type            String   @default("OTHER") // MANDATE, CLAIM, CONTRACT, EVIDENCE, OTHER
+  ocrStatus       String   @default("PENDING") // PENDING, PROCESSING, DONE, FAILED
+  extractedText   String?  @map("extracted_text")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@map("documents")
+}
+
+// =====================
+// CALCULATIONS
+// =====================
+
+model Calculation {
+  id              String   @id @default(cuid())
+  caseId          String   @map("case_id")
+  scenarioType    String   @default("LEGAL_DEFAULT") // LEGAL_DEFAULT, PLAINTIFF_CLAIM
+  totalEosb       Float?   @map("total_eosb")
+  totalLeave      Float?   @map("total_leave")
+  unfairMonths    Int?     @map("unfair_months")
+  detailsJson     String?  @map("details_json") // Stored as JSON string
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@map("calculations")
+}
+
+// =====================
+// MEETINGS
+// =====================
+
+model Meeting {
+  id              String   @id @default(cuid())
+  caseId          String   @map("case_id")
+  title           String
+  scheduledAt     DateTime @map("scheduled_at")
+  duration        Int?     // minutes
+  status          String   @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
+  audioPath       String?  @map("audio_path")
+  transcript      String?
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@map("meetings")
+}
+
+// =====================
+// COURTS (Lookup)
+// =====================
+
+model Court {
+  id          String @id @default(cuid())
+  name        String
+  nameAr      String @map("name_ar")
+  location    String?
+  isActive    Boolean @default(true) @map("is_active")
+
+  @@map("courts")
+}
+
+// =====================
+// ORGANIZATION (Bank Details)
+// =====================
+
+model Organization {
+  id              String   @id @default(cuid())
+  name            String
+  nameAr          String?  @map("name_ar")
+  
+  // Bank Details
+  bankName        String?  @map("bank_name")
+  bankNameAr      String?  @map("bank_name_ar")
+  accountNumber   String?  @map("account_number")
+  iban            String?
+  swiftCode       String?  @map("swift_code")
+  
+  // Contact
+  address         String?
+  phone           String?
+  email           String?
+  
+  isDefault       Boolean  @default(false) @map("is_default")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  feeRequests     FeeRequest[]
+
+  @@map("organizations")
+}
+
+// =====================
+// FEE REQUESTS
+// =====================
+
+model FeeRequest {
+  id              String   @id @default(cuid())
+  caseId          String   @map("case_id")
+  organizationId  String?  @map("organization_id")
+  
+  // Fee Details
+  agreedAmount    Float    @map("agreed_amount")  // From fees_ledger
+  requestedAmount Float?   @map("requested_amount")  // May be adjusted by expert
+  
+  // Status
+  status          String   @default("DRAFT")  // DRAFT, SENT, PAID, CANCELLED
+  
+  // Dates (Gregorian + Hijri)
+  requestDate     DateTime @default(now()) @map("request_date")
+  hijriDate       String?  @map("hijri_date")
+  paidDate        DateTime? @map("paid_date")
+  
+  // Generated Document
+  documentPath    String?  @map("document_path")
+  
+  // Notes
+  notes           String?
+  
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  organization    Organization? @relation(fields: [organizationId], references: [id])
+
+  @@map("fee_requests")
+}
+
+// =====================
+// ANALYTICS CACHE
+// =====================
+
+model AnalyticsCache {
+  id              String   @id @default(cuid())
+  metricName      String   @unique @map("metric_name")
+  value           Float
+  periodStart     DateTime? @map("period_start")
+  periodEnd       DateTime? @map("period_end")
+  calculatedAt    DateTime @default(now()) @map("calculated_at")
+  
+  @@map("analytics_cache")
+}
+

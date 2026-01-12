@@ -1,0 +1,38 @@
+# ExpertOS Python Backend Requirements
+
+# OCR Engines
+paddlepaddle==2.6.0
+paddleocr==2.7.3
+easyocr==1.7.1
+
+# Image Processing
+opencv-python-headless==4.9.0.80
+Pillow==10.2.0
+numpy==1.26.4
+
+# Document Processing
+python-docx==1.1.0
+docxtpl==0.16.7
+PyPDF2==3.0.1
+pdf2image==1.17.0
+
+# NLP & Validation
+thefuzz==0.22.1
+python-Levenshtein==0.25.0
+
+# Date Conversion
+hijri-converter==2.3.1
+
+# Database
+psycopg2-binary==2.9.9
+sqlalchemy==2.0.25
+
+# API Framework
+fastapi==0.109.0
+uvicorn==0.27.0
+python-multipart==0.0.6
+
+# Utilities
+pydantic==2.5.3
+python-dotenv==1.0.0
+requests==2.31.0

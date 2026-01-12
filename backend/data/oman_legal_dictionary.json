@@ -1,0 +1,142 @@
+{
+    "courts": [
+        {
+            "standard": "المحكمة الابتدائية",
+            "english": "Primary Court",
+            "aliases": [
+                "محكمة ابتدائية",
+                "الابتدائية"
+            ]
+        },
+        {
+            "standard": "محكمة الاستئناف",
+            "english": "Court of Appeal",
+            "aliases": [
+                "الاستئناف",
+                "محكمة استئناف"
+            ]
+        },
+        {
+            "standard": "المحكمة العليا",
+            "english": "Supreme Court",
+            "aliases": [
+                "العليا",
+                "محكمة عليا"
+            ]
+        },
+        {
+            "standard": "المحكمة الابتدائية بمسقط",
+            "english": "Primary Court of Muscat",
+            "aliases": [
+                "ابتدائية مسقط"
+            ]
+        },
+        {
+            "standard": "المحكمة الابتدائية بصلالة",
+            "english": "Primary Court of Salalah",
+            "aliases": [
+                "ابتدائية صلالة"
+            ]
+        },
+        {
+            "standard": "المحكمة الابتدائية بصحار",
+            "english": "Primary Court of Sohar",
+            "aliases": [
+                "ابتدائية صحار"
+            ]
+        }
+    ],
+    "departments": [
+        {
+            "standard": "الدائرة العمالية",
+            "english": "Labor Department",
+            "aliases": [
+                "دائرة عمالية",
+                "العمالية"
+            ]
+        },
+        {
+            "standard": "الدائرة المدنية",
+            "english": "Civil Department",
+            "aliases": [
+                "دائرة مدنية",
+                "المدنية"
+            ]
+        },
+        {
+            "standard": "دائرة التنفيذ",
+            "english": "Execution Department",
+            "aliases": [
+                "التنفيذ",
+                "تنفيذ"
+            ]
+        },
+        {
+            "standard": "الدائرة التجارية",
+            "english": "Commercial Department",
+            "aliases": [
+                "دائرة تجارية",
+                "التجارية"
+            ]
+        },
+        {
+            "standard": "الدائرة الجزائية",
+            "english": "Criminal Department",
+            "aliases": [
+                "دائرة جزائية",
+                "الجزائية"
+            ]
+        }
+    ],
+    "roles": [
+        {
+            "standard": "المدعي",
+            "english": "Plaintiff",
+            "aliases": [
+                "مدعي",
+                "الطالب"
+            ]
+        },
+        {
+            "standard": "المدعى عليه",
+            "english": "Defendant",
+            "aliases": [
+                "مدعى عليه",
+                "المطلوب"
+            ]
+        },
+        {
+            "standard": "خبير منتدب",
+            "english": "Appointed Expert",
+            "aliases": [
+                "الخبير المنتدب",
+                "خبير"
+            ]
+        },
+        {
+            "standard": "القاضي",
+            "english": "Judge",
+            "aliases": [
+                "قاضي",
+                "فضيلة القاضي"
+            ]
+        },
+        {
+            "standard": "المحامي",
+            "english": "Lawyer",
+            "aliases": [
+                "محامي",
+                "الوكيل القانوني"
+            ]
+        }
+    ],
+    "common_typos": {
+        "الحكمة": "المحكمة",
+        "الابتدئية": "الابتدائية",
+        "الاستناف": "الاستئناف",
+        "المدعى علية": "المدعى عليه",
+        "المدعي عليه": "المدعى عليه",
+        "الدائره": "الدائرة",
+        "العماليه": "العمالية"
+    }
+}

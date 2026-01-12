@@ -1,0 +1,30 @@
+# EasyOCR Service Dockerfile - Memory Optimized
+FROM python:3.11-slim-bookworm
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+RUN pip install --no-cache-dir \
+    flask \
+    easyocr \
+    gunicorn
+
+# Copy service
+COPY ocr_service.py .
+
+# Pre-download models
+RUN python -c "import easyocr; easyocr.Reader(['ar', 'en'], gpu=False, verbose=False)"
+
+EXPOSE 5000
+
+# Use 1 worker to save memory, increase timeout
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "1", "--timeout", "600", "--preload", "ocr_service:app"]
