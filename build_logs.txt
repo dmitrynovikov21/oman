@@ -1,0 +1,50 @@
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(protected)/cases/[id]/calculation/page.tsx
+Module not found: Can't resolve '@/components/ui/card'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(protected)/cases/[id]/calculation/page.tsx
+Module not found: Can't resolve '@/components/ui/input'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(protected)/cases/[id]/calculation/page.tsx
+Module not found: Can't resolve '@/components/ui/label'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(protected)/cases/[id]/calculation/page.tsx
+Module not found: Can't resolve '@/components/shared/icons'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+> Build failed because of webpack errors
+Hit:1 http://deb.debian.org/debian bookworm InRelease
+Hit:2 http://deb.debian.org/debian bookworm-updates InRelease
+Hit:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+openssl is already the newest version (3.0.17-1~deb12u3).
+ca-certificates is already the newest version (20230311+deb12u1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+up to date, audited 715 packages in 3s
+
+117 packages are looking for funding
+  run `npm fund` for details
+
+12 vulnerabilities (4 low, 5 moderate, 2 high, 1 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.

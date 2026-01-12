@@ -1,0 +1,275 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  53.41MB
+Step 1/10 : FROM node:20-slim
+ ---> f9e4b0719958
+Step 2/10 : RUN apt-get update && apt-get install -y openssl ca-certificates curl && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 98842054a830
+Step 3/10 : WORKDIR /app
+ ---> Using cache
+ ---> 6a18d6dac6ba
+Step 4/10 : COPY package*.json ./
+ ---> Using cache
+ ---> 4371d98aa419
+Step 5/10 : RUN npm install --legacy-peer-deps --ignore-scripts
+ ---> Using cache
+ ---> 20fe2291d5d7
+Step 6/10 : COPY . .
+ ---> bac46db69682
+Step 7/10 : RUN npx prisma@5.22.0 generate
+ ---> Running in 865e39ad9ed1
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 329ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
+
+ ---> Removed intermediate container 865e39ad9ed1
+ ---> c14350eff2af
+Step 8/10 : RUN npm run build
+ ---> Running in 241cbbf75b92
+
+> expertos@1.0.0 build
+> next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+  ▲ Next.js 14.2.5
+  - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+[91m ⚠ Using edge runtime on a page currently disables static generation for that page
+[0m   Generating static pages (0/46) ...
+[91mAnalytics error: q [Error]: Dynamic server usage: Route /api/analytics couldn't be rendered statically because it used `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at W (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:21106)
+    at Object.get (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:28459)
+    at c (/app/.next/server/app/api/analytics/route.js:1:609)
+    at /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36264
+    at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+    at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+    at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+    at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103 {
+  description: "Route /api/analytics couldn't be rendered statically because it used `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+[0m[91mAnalytics API Error: PrismaClientInitializationError: 
+Invalid `prisma.case.count()` invocation:
+
+
+Can't reach database server at `db:5432`
+
+Please make sure your database server is running at `db:5432`.
+    at $n.handleRequestError (/app/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/app/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/app/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/app/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async l (/app/.next/server/app/api/analytics/stats/route.js:1:652)
+    at async /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36258
+    at async eR.execute (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:26874)
+    at async eR.handle (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:37512)
+    at async exportAppRoute (/app/node_modules/next/dist/export/routes/app-route.js:77:26)
+    at async exportPageImpl (/app/node_modules/next/dist/export/worker.js:175:20) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+[0m   Generating static pages (11/46) 
+[91mSearch error: q [Error]: Dynamic server usage: Route /api/search couldn't be rendered statically because it used `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at W (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:21106)
+    at Object.get (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:28459)
+    at u (/app/.next/server/app/api/search/route.js:1:601)
+    at /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36264
+    at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+    at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+    at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+    at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103 {
+  description: "Route /api/search couldn't be rendered statically because it used `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+[0m   Generating static pages (22/46) 
+[91mError fetching stats: q [Error]: Dynamic server usage: Route /api/stats couldn't be rendered statically because it used `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at W (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:21106)
+    at Object.get (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:28459)
+    at c (/app/.next/server/app/api/stats/route.js:1:1547)
+    at /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36264
+    at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+    at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+    at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+    at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103 {
+  description: "Route /api/stats couldn't be rendered statically because it used `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+[0m   Generating static pages (34/46) 
+[91mError: Event handlers cannot be passed to Client Component props.
+  {documents: ..., onDocumentClick: function onDocumentClick}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:140566)
+    at Object.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+    at stringify (<anonymous>)
+    at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219)
+    at eE (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142698)
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at Timeout._onTimeout (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:150397)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7) {
+  digest: '3362283919'
+}
+Error: Event handlers cannot be passed to Client Component props.
+  {documents: ..., onDocumentClick: function onDocumentClick}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:140566)
+    at Object.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+    at stringify (<anonymous>)
+    at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219)
+    at eE (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142698)
+    at Timeout._onTimeout (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135475)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7) {
+  digest: '22942507'
+}
+Error: Event handlers cannot be passed to Client Component props.
+  {documents: ..., onDocumentClick: function onDocumentClick}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:140566)
+    at Object.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+    at stringify (<anonymous>)
+    at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219)
+    at eE (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142698)
+    at Timeout._onTimeout (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135475)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7) {
+  digest: '22942507'
+}
+[0m[91m ⚠ Sending SIGTERM signal to static worker due to timeout of 60 seconds. Subsequent errors may be a result of the worker exiting.
+[0m[91m ⚠ Restarted static page generation for /documents because it took more than 60 seconds
+[0m[91m ⚠ See more info here https://nextjs.org/docs/messages/static-page-generation-timeout
+[0m[91m ⚠ Restarted static page generation for /help because it took more than 60 seconds
+[0m[91m ⚠ Restarted static page generation for /reports because it took more than 60 seconds
+[0m[91m ⚠ Restarted static page generation for /templates because it took more than 60 seconds
+[0m[91mError: Event handlers cannot be passed to Client Component props.
+  {documents: ..., onDocumentClick: function onDocumentClick}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:140566)
+    at Object.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+    at stringify (<anonymous>)
+    at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219)
+    at eE (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142698)
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at Timeout._onTimeout (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:150397)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7) {
+  digest: '3362283919'
+}
+[0m[91mError: Event handlers cannot be passed to Client Component props.
+  {documents: ..., onDocumentClick: function onDocumentClick}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:140566)
+    at Object.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+    at stringify (<anonymous>)
+    at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219)
+    at eE (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142698)
+    at Timeout._onTimeout (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135475)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7) {
+  digest: '22942507'
+}
+[0m[91mError: Event handlers cannot be passed to Client Component props.
+  {documents: ..., onDocumentClick: function onDocumentClick}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:140566)
+    at Object.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+    at stringify (<anonymous>)
+    at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219)
+    at eE (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142698)
+    at Timeout._onTimeout (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135475)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7) {
+  digest: '22942507'
+}
+[0m[91m ⚠ Sending SIGTERM signal to static worker due to timeout of 60 seconds. Subsequent errors may be a result of the worker exiting.
+[0m[91m ⚠ Restarted static page generation for /documents because it took more than 60 seconds
+[0m[91m ⚠ Restarted static page generation for /help because it took more than 60 seconds
+[0m[91m ⚠ Restarted static page generation for /reports because it took more than 60 seconds
+[0m[91m ⚠ Restarted static page generation for /templates because it took more than 60 seconds
+[0m[91mError: Event handlers cannot be passed to Client Component props.
+  {documents: ..., onDocumentClick: function onDocumentClick}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:140566)
+    at Object.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+    at stringify (<anonymous>)
+    at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219)
+    at eE (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142698)
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at Timeout._onTimeout (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:150397)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7) {
+  digest: '3362283919'
+}
+[0m[91mError: Event handlers cannot be passed to Client Component props.
+  {documents: ..., onDocumentClick: function onDocumentClick}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:140566)
+    at Object.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+    at stringify (<anonymous>)
+    at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219)
+    at eE (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142698)
+    at Timeout._onTimeout (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135475)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7) {
+  digest: '22942507'
+}
+[0m[91mError: Event handlers cannot be passed to Client Component props.
+  {documents: ..., onDocumentClick: function onDocumentClick}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:140566)
+    at Object.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+    at stringify (<anonymous>)
+    at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219)
+    at eE (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142698)
+    at Timeout._onTimeout (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135475)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7) {
+  digest: '22942507'
+}
+[0m[91m ⚠ Sending SIGTERM signal to static worker due to timeout of 60 seconds. Subsequent errors may be a result of the worker exiting.
+[0m[91m
+[0m[91m> Build error occurred
+[0m[91mError: Static page generation for /documents is still timing out after 3 attempts. See more info here https://nextjs.org/docs/messages/static-page-generation-timeout
+    at onRestart (/app/node_modules/next/dist/build/index.js:293:27)
+    at /app/node_modules/next/dist/lib/worker.js:95:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /app/node_modules/next/dist/export/index.js:450:20
+    at async Span.traceAsyncFn (/app/node_modules/next/dist/trace/trace.js:154:20)
+    at async /app/node_modules/next/dist/export/index.js:448:24
+    at async Promise.all (index 42)
+    at async exportAppImpl (/app/node_modules/next/dist/export/index.js:440:21)
+    at async /app/node_modules/next/dist/export/index.js:623:16
+    at async Span.traceAsyncFn (/app/node_modules/next/dist/trace/trace.js:154:20)
+[0mThe command '/bin/sh -c npm run build' returned a non-zero code: 1

@@ -1,0 +1,64 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  53.41MB
+Step 1/10 : FROM node:20-slim
+ ---> f9e4b0719958
+Step 2/10 : RUN apt-get update && apt-get install -y openssl ca-certificates curl && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 98842054a830
+Step 3/10 : WORKDIR /app
+ ---> Using cache
+ ---> 6a18d6dac6ba
+Step 4/10 : COPY package*.json ./
+ ---> Using cache
+ ---> 4371d98aa419
+Step 5/10 : RUN npm install --legacy-peer-deps --ignore-scripts
+ ---> Using cache
+ ---> 20fe2291d5d7
+Step 6/10 : COPY . .
+ ---> bbd2d417a001
+Step 7/10 : RUN npx prisma@5.22.0 generate
+ ---> Running in 1d3f234b15dd
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 386ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
+
+ ---> Removed intermediate container 1d3f234b15dd
+ ---> 9f3d73f9e68d
+Step 8/10 : RUN npm run build
+ ---> Running in 3ac6575bc450
+
+> expertos@1.0.0 build
+> next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+  ▲ Next.js 14.2.5
+  - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+[91mFailed to compile.
+
+./app/api/documents/batch-upload/route.ts:58:26
+Type error: Argument of type '{ id: string; name: string; type: string; status: string; }' is not assignable to parameter of type 'never'.
+
+[0m [90m 56 |[39m             })[33m;[39m[0m
+[0m [90m 57 |[39m[0m
+[0m[31m[1m>[22m[39m[90m 58 |[39m             results[33m.[39mpush({[0m
+[0m [90m    |[39m                          [31m[1m^[22m[39m[0m
+[0m [90m 59 |[39m                 id[33m:[39m document[33m.[39mid[33m,[39m[0m
+[0m [90m 60 |[39m                 name[33m:[39m document[33m.[39mname[33m,[39m[0m
+[0m [90m 61 |[39m                 type[33m:[39m document[33m.[39mtype[33m,[39m[0m
+[0mThe command '/bin/sh -c npm run build' returned a non-zero code: 1

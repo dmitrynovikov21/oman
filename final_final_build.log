@@ -1,0 +1,73 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  53.41MB
+Step 1/10 : FROM node:20-slim
+ ---> f9e4b0719958
+Step 2/10 : RUN apt-get update && apt-get install -y openssl ca-certificates curl && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 98842054a830
+Step 3/10 : WORKDIR /app
+ ---> Using cache
+ ---> 6a18d6dac6ba
+Step 4/10 : COPY package*.json ./
+ ---> Using cache
+ ---> 4371d98aa419
+Step 5/10 : RUN npm install --legacy-peer-deps --ignore-scripts
+ ---> Using cache
+ ---> 20fe2291d5d7
+Step 6/10 : COPY . .
+ ---> 83eaa773e039
+Step 7/10 : RUN npx prisma@5.22.0 generate
+ ---> Running in c71f90b412cc
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 363ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+
+ ---> Removed intermediate container c71f90b412cc
+ ---> 5e02d4a2c9a6
+Step 8/10 : RUN npm run build
+ ---> Running in 3f6cb0802a31
+
+> expertos@1.0.0 build
+> next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+  ▲ Next.js 14.2.5
+  - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+[91m❌ Invalid environment variables: { AUTH_SECRET: [ 'Required' ], NEXT_PUBLIC_APP_URL: [ 'Required' ] }
+[0m[91mError: Invalid environment variables
+    at p (/app/.next/server/chunks/2854.js:1:1271)
+    at /app/.next/server/chunks/2854.js:1:1451
+    at s (/app/.next/server/chunks/2854.js:1:1759)
+    at 73066 (/app/.next/server/app/api/auth/[...nextauth]/route.js:1:2489)
+    at t (/app/.next/server/webpack-runtime.js:1:142)
+    at 1405 (/app/.next/server/app/api/auth/[...nextauth]/route.js:1:1575)
+    at t (/app/.next/server/webpack-runtime.js:1:142)
+    at 79740 (/app/.next/server/app/api/auth/[...nextauth]/route.js:1:1005)
+    at t (/app/.next/server/webpack-runtime.js:1:142)
+    at r (/app/.next/server/app/api/auth/[...nextauth]/route.js:1:4060)
+[0m[91m
+[0m[91m> Build error occurred
+[0m[91mError: Failed to collect page data for /api/auth/[...nextauth]
+    at /app/node_modules/next/dist/build/utils.js:1268:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  type: 'Error'
+}
+[0mThe command '/bin/sh -c npm run build' returned a non-zero code: 1

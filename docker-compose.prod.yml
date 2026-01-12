@@ -1,0 +1,98 @@
+# ExpertOS Production Docker Compose
+# Mission 16: Production Deployment
+
+version: '3.8'
+
+services:
+  # ============================================
+  # PostgreSQL Database (Production)
+  # ============================================
+  db:
+    image: postgres:16-alpine
+    container_name: expertos-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-expertos}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Database password required}
+      POSTGRES_DB: ${POSTGRES_DB:-expertos}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-expertos}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - expertos-network
+
+  # ============================================
+  # Next.js Frontend (Production Build)
+  # ============================================
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: expertos-web
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-expertos}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-expertos}
+      - NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:3000}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET:?NextAuth secret required}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./public/generated_reports:/app/public/generated_reports
+    networks:
+      - expertos-network
+
+  # ============================================
+  # Python OCR Backend (FastAPI)
+  # ============================================
+  ocr:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.python
+    container_name: expertos-ocr
+    restart: always
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-expertos}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-expertos}
+    volumes:
+      - ./uploads:/app/uploads
+      - ./public/generated_reports:/app/reports
+    ports:
+      - "8000:8000"
+    networks:
+      - expertos-network
+
+  # ============================================
+  # Nginx Reverse Proxy
+  # ============================================
+  nginx:
+    image: nginx:alpine
+    container_name: expertos-nginx
+    restart: always
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    networks:
+      - expertos-network
+
+networks:
+  expertos-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

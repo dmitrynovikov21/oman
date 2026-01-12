@@ -1,0 +1,64 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  53.41MB
+Step 1/10 : FROM node:20-slim
+ ---> f9e4b0719958
+Step 2/10 : RUN apt-get update && apt-get install -y openssl ca-certificates curl && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> e5aa301fd7b8
+Step 3/10 : WORKDIR /app
+ ---> Using cache
+ ---> 803b7e35c491
+Step 4/10 : COPY package*.json ./
+ ---> Using cache
+ ---> e988ba6f54e7
+Step 5/10 : RUN npm install --legacy-peer-deps --ignore-scripts
+ ---> Using cache
+ ---> efce932d6c4e
+Step 6/10 : COPY . .
+ ---> 90b6ec091df4
+Step 7/10 : RUN npx prisma@5.22.0 generate
+ ---> Running in 23384ec4081b
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 557ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
+
+ ---> Removed intermediate container 23384ec4081b
+ ---> fa18e2ac4b51
+Step 8/10 : RUN npm run build
+ ---> Running in f87ebf51dda8
+
+> expertos@1.0.0 build
+> next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+  ▲ Next.js 14.2.5
+  - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+[91mFailed to compile.
+
+[0m[91m./app/api/analytics/stats/route.ts:144:21
+Type error: Argument of type '{ month: string; cases: number; revenue: number; }' is not assignable to parameter of type 'never'.
+
+[0m [90m 142 |[39m         })[33m;[39m[0m
+[0m [90m 143 |[39m[0m
+[0m[31m[1m>[22m[39m[90m 144 |[39m         months[33m.[39mpush({[0m
+[0m [90m     |[39m                     [31m[1m^[22m[39m[0m
+[0m [90m 145 |[39m             month[33m:[39m date[33m.[39mtoLocaleDateString([32m'en'[39m[33m,[39m { month[33m:[39m [32m'short'[39m })[33m,[39m[0m
+[0m [90m 146 |[39m             cases[33m:[39m count[33m,[39m[0m
+[0m [90m 147 |[39m             revenue[33m:[39m [35m0[39m [90m// Will be populated when feeAmount is available[39m[0m
+[0mThe command '/bin/sh -c npm run build' returned a non-zero code: 1

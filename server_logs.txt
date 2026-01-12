@@ -1,0 +1,100 @@
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "expertos", schema "public" at "db:5432"
+
+The database is already in sync with the Prisma schema.
+
+Running generate... (Use --skip-generate to skip the generators)
+[2K[1A[2K[GRunning generate... - Prisma Client
+[2K[1A[2K[G✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 393ms
+
+
+> expertos@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.5
+  - Environments: .env
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./app/(protected)/cases/[id]/calculation/page.tsx
+Module not found: Can't resolve '@/components/ui/button'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(protected)/cases/[id]/calculation/page.tsx
+Module not found: Can't resolve '@/components/ui/card'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(protected)/cases/[id]/calculation/page.tsx
+Module not found: Can't resolve '@/components/ui/input'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(protected)/cases/[id]/calculation/page.tsx
+Module not found: Can't resolve '@/components/ui/label'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/(protected)/cases/[id]/calculation/page.tsx
+Module not found: Can't resolve '@/components/shared/icons'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+> Build failed because of webpack errors
+Hit:1 http://deb.debian.org/debian bookworm InRelease
+Hit:2 http://deb.debian.org/debian bookworm-updates InRelease
+Hit:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+openssl is already the newest version (3.0.17-1~deb12u3).
+ca-certificates is already the newest version (20230311+deb12u1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+up to date, audited 715 packages in 5s
+
+117 packages are looking for funding
+  run `npm fund` for details
+
+12 vulnerabilities (4 low, 5 moderate, 2 high, 1 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 516ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "expertos", schema "public" at "db:5432"
+
+The database is already in sync with the Prisma schema.
+
+Running generate... (Use --skip-generate to skip the generators)
+[2K[1A[2K[GRunning generate... - Prisma Client
+[2K[1A[2K[G✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 434ms
+
+
+> expertos@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.5
+  - Environments: .env
+
+   Creating an optimized production build ...

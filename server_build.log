@@ -1,0 +1,61 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  53.41MB
+Step 1/10 : FROM node:20-slim
+ ---> f9e4b0719958
+Step 2/10 : RUN apt-get update && apt-get install -y openssl ca-certificates curl && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> e5aa301fd7b8
+Step 3/10 : WORKDIR /app
+ ---> Using cache
+ ---> 803b7e35c491
+Step 4/10 : COPY package*.json ./
+ ---> Using cache
+ ---> e988ba6f54e7
+Step 5/10 : RUN npm install --legacy-peer-deps --ignore-scripts
+ ---> Using cache
+ ---> efce932d6c4e
+Step 6/10 : COPY . .
+ ---> ffe2d615e27e
+Step 7/10 : RUN npx prisma@5.22.0 generate
+ ---> Running in 5006609b825c
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 565ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Easily identify and fix slow SQL queries in your app. Optimize helps you enhance your visibility: https://pris.ly/--optimize
+
+ ---> Removed intermediate container 5006609b825c
+ ---> 10ddca0f2027
+Step 8/10 : RUN npm run build
+ ---> Running in 45682d322be2
+
+> expertos@1.0.0 build
+> next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+  ▲ Next.js 14.2.5
+  - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+[91mFailed to compile.
+
+[0m[91mapp/api/reports/generate/route.ts
+Type error: Route "app/api/reports/generate/route.ts" has an invalid export:
+  "Promise<unknown>" is not a valid POST return type:
+    Expected "void | Response | Promise<void | Response>", got "Promise<unknown>".
+      Expected "Promise<void | Response>", got "Promise<unknown>".
+        Expected "void | Response", got "unknown".
+
+[0mThe command '/bin/sh -c npm run build' returned a non-zero code: 1
