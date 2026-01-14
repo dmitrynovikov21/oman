@@ -1,0 +1,38 @@
+{
+  "document_id": "doc_20260113_223017",
+  "filename": "test.pdf",
+  "pages": [
+    {
+      "page_number": 1,
+      "width": 2481,
+      "height": 3509,
+      "content": [],
+      "layout_map": "",
+      "raw_text": "",
+      "normalized_text": ""
+    },
+    {
+      "page_number": 2,
+      "width": 2481,
+      "height": 3509,
+      "content": [],
+      "layout_map": "",
+      "raw_text": "",
+      "normalized_text": ""
+    }
+  ],
+  "metadata": {
+    "vram_gb": 0.0,
+    "device": "cpu",
+    "engine": "zoom_ocr_v1"
+  },
+  "validation": {
+    "phone": null,
+    "cr": null,
+    "salary": null,
+    "ref_id": null,
+    "confidence": "LOW",
+    "warnings": []
+  },
+  "processing_time_ms": 11143
+}

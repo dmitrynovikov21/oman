@@ -1,0 +1,36 @@
+{
+  "document": "أحمد سالم عبدالله البادي-1-2111.pdf",
+  "final_results": {
+    "phone": {
+      "value": "95788279",
+      "confidence": "MEDIUM"
+    },
+    "salary": {
+      "value": "1013",
+      "confidence": "MEDIUM"
+    },
+    "cr": {
+      "value": "95788279 ",
+      "confidence": "MEDIUM"
+    },
+    "ref_id": {
+      "value": "882401040246",
+      "confidence": "MEDIUM"
+    }
+  },
+  "scale_extractions": {
+    "phone": {
+      "1.5x": "95788279"
+    },
+    "salary": {
+      "1.5x": "1013"
+    },
+    "cr": {
+      "1.5x": "95788279 "
+    },
+    "ref_id": {
+      "1.5x": "882401040246"
+    }
+  },
+  "accuracy": 50.0
+}

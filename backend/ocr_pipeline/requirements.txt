@@ -1,0 +1,23 @@
+# ExpertOS OCR Pipeline v4.0
+# Surya + Arabic-Nougat + Tnkeeh
+
+# Core dependencies
+torch>=2.0.0
+transformers>=4.30.0
+surya-ocr>=0.4.0
+tnkeeh>=0.0.2
+
+# PDF processing
+pdf2image>=1.16.0
+pillow>=9.0.0
+
+# Image processing
+numpy>=1.21.0
+opencv-python>=4.5.0
+
+# Utilities
+huggingface-hub>=0.16.0
+tqdm>=4.64.0
+
+# Optional: EasyOCR fallback
+easyocr>=1.6.0
