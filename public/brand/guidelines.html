@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tilqai Brand Guidelines</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'AlibabaSans-Regular';
+            src: url('https://assets-persist.lovart.ai/agent-static-assets/AlibabaSans-Regular.otf');
+        }
+        @font-face {
+            font-family: 'AlibabaSans-Medium';
+            src: url('https://assets-persist.lovart.ai/agent-static-assets/AlibabaSans-Medium.otf');
+        }
+        @font-face {
+            font-family: 'AlibabaSans-Bold';
+            src: url('https://assets-persist.lovart.ai/agent-static-assets/Alibaba-PuHuiTi-Bold.otf');
+        }
+
+        :root {
+            --brand-navy: #0A0F19;
+            --brand-blue: #0A65FF;
+            --brand-cyan: #11C5D9;
+            --brand-white: #FFFFFF;
+            --brand-gray: #E5E7EB;
+            --text-dark: #1F2937;
+            --text-light: #F3F4F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            font-family: 'AlibabaSans-Regular', sans-serif;
+            background-color: var(--brand-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 1920px;
+            height: 80px;
+            background: rgba(10, 15, 25, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 100px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-logo {
+            font-family: 'AlibabaSans-Bold';
+            font-size: 24px;
+            color: var(--brand-white);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--brand-cyan);
+        }
+
+        /* Sections */
+        section {
+            width: 1920px;
+            min-height: 1080px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 100px;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+            max-width: 800px;
+        }
+
+        .section-number {
+            font-family: 'AlibabaSans-Bold';
+            font-size: 14px;
+            color: var(--brand-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'AlibabaSans-Bold';
+            font-size: 56px;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--brand-blue), var(--brand-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title.light {
+            background: none;
+            color: var(--brand-white);
+            -webkit-text-fill-color: var(--brand-white);
+        }
+
+        .section-desc {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #666;
+            max-width: 600px;
+        }
+
+        .section-desc.light {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Cover */
+        #cover {
+            background-color: var(--brand-navy);
+            align-items: center;
+            text-align: center;
+            background-image: radial-gradient(circle at 70% 30%, rgba(17, 197, 217, 0.1) 0%, transparent 40%),
+                            radial-gradient(circle at 30% 70%, rgba(10, 101, 255, 0.1) 0%, transparent 40%);
+        }
+
+        .cover-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .cover-logo img {
+            width: 800px;
+            height: auto;
+        }
+
+        .cover-title {
+            font-family: 'AlibabaSans-Regular';
+            font-size: 32px;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 40px;
+            width: 100%;
+        }
+
+        .cover-version {
+            position: absolute;
+            bottom: 60px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 2px;
+        }
+
+        /* Logo System */
+        #logos {
+            background-color: #F8F9FA;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            width: 100%;
+        }
+
+        .logo-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo-card.dark {
+            background: var(--brand-navy);
+        }
+
+        .logo-card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .logo-card-title {
+            font-family: 'AlibabaSans-Medium';
+            font-size: 18px;
+            color: #333;
+            margin-top: auto;
+        }
+
+        .logo-card.dark .logo-card-title {
+            color: #fff;
+        }
+
+        .logo-label {
+            font-size: 14px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Icon Grid */
+        .icon-grid {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .icon-card {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .icon-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Color Palette */
+        #colors {
+            background-color: var(--brand-navy);
+            color: var(--brand-white);
+        }
+
+        .color-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            width: 100%;
+        }
+
+        .color-main {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .swatch-large {
+            width: 100%;
+            height: 300px;
+            border-radius: 24px;
+            position: relative;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .swatch-large.blue {
+            background: linear-gradient(135deg, var(--brand-blue), var(--brand-cyan));
+            box-shadow: 0 20px 50px rgba(10, 101, 255, 0.3);
+        }
+
+        .swatch-large.navy {
+            background: var(--brand-navy);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .swatch-info h3 {
+            font-family: 'AlibabaSans-Bold';
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .swatch-info p {
+            font-family: 'AlibabaSans-Regular';
+            opacity: 0.8;
+            font-size: 18px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .swatch-small {
+            height: 180px;
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .bg-blue { background: var(--brand-blue); }
+        .bg-cyan { background: var(--brand-cyan); color: var(--brand-navy); }
+        .bg-navy { background: #0A0F19; border: 1px solid rgba(255,255,255,0.1); }
+        .bg-white { background: #FFFFFF; color: var(--brand-navy); }
+
+        .hex-code {
+            font-family: 'AlibabaSans-Medium';
+            font-size: 20px;
+            margin-top: 5px;
+        }
+
+        .color-name {
+            font-size: 14px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Typography */
+        #typography {
+            background: #fff;
+        }
+
+        .type-display {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .type-specimen {
+            font-size: 280px;
+            font-family: 'AlibabaSans-Bold';
+            line-height: 1;
+            background: linear-gradient(135deg, var(--brand-blue), var(--brand-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.1;
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+            z-index: 0;
+            user-select: none;
+        }
+
+        .font-card {
+            background: #F8F9FA;
+            padding: 60px;
+            border-radius: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .font-name {
+            font-size: 32px;
+            font-family: 'AlibabaSans-Bold';
+            margin-bottom: 40px;
+            color: var(--brand-blue);
+        }
+
+        .alphabet {
+            font-family: 'AlibabaSans-Regular';
+            font-size: 24px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 40px;
+            word-break: break-all;
+        }
+
+        .type-hierarchy {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .h-level {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .h-level:last-child {
+            border-bottom: none;
+        }
+
+        .h-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .h1-sample { font-family: 'AlibabaSans-Bold'; font-size: 48px; color: var(--brand-navy); }
+        .h2-sample { font-family: 'AlibabaSans-Bold'; font-size: 32px; color: var(--brand-navy); }
+        .p-sample { font-family: 'AlibabaSans-Regular'; font-size: 18px; color: #666; line-height: 1.6; }
+
+
+        /* Applications */
+        #applications {
+            background-color: #F0F2F5;
+        }
+
+        .app-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .mockup-container {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .mockup-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .mockup-label {
+            padding: 20px 30px;
+            font-family: 'AlibabaSans-Medium';
+            font-size: 18px;
+            color: var(--brand-navy);
+            border-top: 1px solid #eee;
+        }
+
+        .footer {
+            background: var(--brand-navy);
+            padding: 80px 100px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'AlibabaSans-Bold';
+            font-size: 24px;
+            color: var(--brand-white);
+            margin-bottom: 10px;
+        }
+
+        /* Divider */
+        .divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-blue), var(--brand-cyan));
+            margin-bottom: 40px;
+            border-radius: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">tilqai</div>
+        <div class="nav-links">
+            <a href="#logos" class="nav-link">Logos</a>
+            <a href="#colors" class="nav-link">Colors</a>
+            <a href="#typography" class="nav-link">Typography</a>
+            <a href="#applications" class="nav-link">Applications</a>
+        </div>
+    </nav>
+
+    <!-- Cover Page -->
+    <section id="cover">
+        <div class="cover-content">
+            <div class="cover-logo">
+                <img src="https://a.lovart.ai/artifacts/agent/r5QPBCpR5UEBhvMD.png" alt="tilqai Primary Logo">
+            </div>
+            <div class="cover-title">Brand Guidelines V1.0</div>
+        </div>
+        <div class="cover-version">© 2023 TILQAI TECHNOLOGIES. ALL RIGHTS RESERVED.</div>
+    </section>
+
+    <!-- Logo System -->
+    <section id="logos">
+        <div class="section-header">
+            <span class="section-number">01 / Identity</span>
+            <div class="divider"></div>
+            <h2 class="section-title">Logo System</h2>
+            <p class="section-desc">Our logo is the cornerstone of our visual identity. It represents our commitment to clarity, technology, and modern aesthetics. The rounded sans-serif typeface combined with our signature gradient creates a friendly yet professional look.</p>
+        </div>
+
+        <div class="logo-grid">
+            <!-- Primary -->
+            <div class="logo-card dark">
+                <img src="https://a.lovart.ai/artifacts/agent/r5QPBCpR5UEBhvMD.png" class="logo-card-image" alt="Primary Logo">
+                <div>
+                    <div class="logo-label">Primary</div>
+                    <div class="logo-card-title">Dark Background</div>
+                </div>
+            </div>
+
+            <!-- Light BG Full Color -->
+            <div class="logo-card">
+                <img src="https://a.lovart.ai/artifacts/agent/viS1tYrYzI2ZT8xW.png" class="logo-card-image" alt="Light BG Color">
+                <div>
+                    <div class="logo-label">Primary Alternate</div>
+                    <div class="logo-card-title">Light Background</div>
+                </div>
+            </div>
+
+            <!-- Light BG Blue -->
+            <div class="logo-card">
+                <img src="https://a.lovart.ai/artifacts/agent/N9BRpGYqEiG6N3be.png" class="logo-card-image" alt="Light BG Blue">
+                <div>
+                    <div class="logo-label">Secondary</div>
+                    <div class="logo-card-title">Blue Gradient</div>
+                </div>
+            </div>
+            
+             <!-- Light BG Subtle -->
+             <div class="logo-card">
+                <img src="https://a.lovart.ai/artifacts/agent/LbG0rGcuKmBINvmm.png" class="logo-card-image" alt="Light BG Subtle">
+                <div>
+                    <div class="logo-label">Subtle</div>
+                    <div class="logo-card-title">Gray & Gradient</div>
+                </div>
+            </div>
+
+            <!-- Monochrome White -->
+            <div class="logo-card dark">
+                <img src="https://a.lovart.ai/artifacts/agent/ETwzbieSWp4STZhh.png" class="logo-card-image" alt="Mono White">
+                <div>
+                    <div class="logo-label">Monochrome</div>
+                    <div class="logo-card-title">Solid White</div>
+                </div>
+            </div>
+
+            <!-- Monochrome Black -->
+            <div class="logo-card">
+                <img src="https://a.lovart.ai/artifacts/agent/SPY6lTPZhcB0rgIY.png" class="logo-card-image" alt="Mono Black">
+                <div>
+                    <div class="logo-label">Monochrome</div>
+                    <div class="logo-card-title">Solid Black</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 80px;">
+            <h3 style="font-family: 'AlibabaSans-Bold'; font-size: 24px; margin-bottom: 30px; color: var(--brand-navy);">Iconography & Monograms</h3>
+            <div class="icon-grid">
+                <div class="icon-card">
+                    <img src="https://a.lovart.ai/artifacts/agent/lrLxFqU9WClI7m64.png" class="icon-img" alt="AI Icon">
+                    <span class="logo-label">AI Symbol</span>
+                </div>
+                <div class="icon-card">
+                    <img src="https://a.lovart.ai/artifacts/agent/tYSUwoPIV4AETPWc.png" class="icon-img" alt="T Monogram">
+                    <span class="logo-label">T Monogram</span>
+                </div>
+                <div class="icon-card">
+                    <img src="https://a.lovart.ai/artifacts/agent/70mUn7lhwlGk7AZo.png" class="icon-img" alt="Compact Icon">
+                    <span class="logo-label">Compact Badge</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Palette -->
+    <section id="colors">
+        <div class="section-header">
+            <span class="section-number">02 / Color</span>
+            <div class="divider"></div>
+            <h2 class="section-title light">Color Palette</h2>
+            <p class="section-desc light">Our color palette reflects the depth of technology and the brightness of innovation. Deep Navy anchors the brand, while Electric Blue and Cyan bring energy and forward momentum.</p>
+        </div>
+
+        <div class="color-container">
+            <div class="color-main">
+                <div class="swatch-large blue">
+                    <div class="swatch-info">
+                        <h3>Brand Gradient</h3>
+                        <p>#0A65FF to #11C5D9</p>
+                    </div>
+                </div>
+                <div style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+                    The primary brand gradient is used on the "ai" portion of the logo, buttons, and key interactive elements. It symbolizes the transition from data to intelligence.
+                </div>
+            </div>
+
+            <div class="color-grid">
+                <div class="swatch-small bg-navy">
+                    <div class="color-name">Primary Dark</div>
+                    <div class="hex-code">#0A0F19</div>
+                </div>
+                <div class="swatch-small bg-white">
+                    <div class="color-name">Primary Light</div>
+                    <div class="hex-code">#FFFFFF</div>
+                </div>
+                <div class="swatch-small bg-blue">
+                    <div class="color-name">Electric Blue</div>
+                    <div class="hex-code">#0A65FF</div>
+                </div>
+                <div class="swatch-small bg-cyan">
+                    <div class="color-name">Cyan</div>
+                    <div class="hex-code">#11C5D9</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typography -->
+    <section id="typography">
+        <div class="type-specimen">Aa</div>
+        <div class="section-header">
+            <span class="section-number">03 / Type</span>
+            <div class="divider"></div>
+            <h2 class="section-title">Typography</h2>
+            <p class="section-desc">We use Alibaba Sans as our primary typeface. It's clean, modern, and highly legible across digital and print media, perfectly complementing our rounded logo design.</p>
+        </div>
+
+        <div class="type-display">
+            <div class="font-card">
+                <div class="font-name">Alibaba Sans</div>
+                <div class="alphabet">
+                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                    abcdefghijklmnopqrstuvwxyz<br>
+                    0123456789 (!@#$%&?)
+                </div>
+                <div style="display: flex; gap: 20px;">
+                    <span style="font-family: 'AlibabaSans-Regular'">Regular</span>
+                    <span style="font-family: 'AlibabaSans-Medium'">Medium</span>
+                    <span style="font-family: 'AlibabaSans-Bold'">Bold</span>
+                </div>
+            </div>
+
+            <div class="type-hierarchy">
+                <div class="h-level">
+                    <div class="h-label">Headline 1 / Bold / 48px</div>
+                    <div class="h1-sample">The Future of AI is Here</div>
+                </div>
+                <div class="h-level">
+                    <div class="h-label">Headline 2 / Bold / 32px</div>
+                    <div class="h2-sample">Seamless Integration</div>
+                </div>
+                <div class="h-level">
+                    <div class="h-label">Body / Regular / 18px</div>
+                    <div class="p-sample">
+                        tilqai empowers businesses to harness the power of artificial intelligence through intuitive interfaces and robust backend solutions. Our platform is designed for scalability and ease of use.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications -->
+    <section id="applications">
+        <div class="section-header">
+            <span class="section-number">04 / Context</span>
+            <div class="divider"></div>
+            <h2 class="section-title">Brand Application</h2>
+            <p class="section-desc">Consistent application of our visual identity builds trust and recognition. Here is how tilqai appears in the real world.</p>
+        </div>
+
+        <div class="app-showcase">
+            <div class="mockup-container">
+                <img src="https://a.lovart.ai/artifacts/agent/ji2l6rawoIACNxYq.png" class="mockup-img" alt="Business Card Front">
+                <div class="mockup-label">Business Card - Front</div>
+            </div>
+            <div class="mockup-container">
+                <img src="https://a.lovart.ai/artifacts/agent/ITUzRp5YMw8TUl7D.png" class="mockup-img" alt="Business Card Back">
+                <div class="mockup-label">Business Card - Back</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div>
+            <div class="footer-logo">tilqai</div>
+            <p>Brand Identity Guidelines</p>
+        </div>
+        <div>
+            <p>Designed for Digital Excellence</p>
+        </div>
+    </footer>
+
+</body>
+</html>
