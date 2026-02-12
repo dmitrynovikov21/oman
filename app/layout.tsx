@@ -1,13 +1,13 @@
 import "./globals.css";
 
-import { Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-const manrope = Manrope({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-manrope",
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 function cn(...inputs: ClassValue[]) {
@@ -15,11 +15,11 @@ function cn(...inputs: ClassValue[]) {
 }
 
 export const metadata = {
-  title: "ExpertOS — Цифровая платформа для судебных экспертов",
-  description: "Автоматизация OCR, расчет трудовых выплат, генерация документов для экспертов в Омане.",
+  title: "Tilqai — AI Solutions for Business in Oman",
+  description: "AI-powered automation for operations, compliance, and business processes. Built for companies in the GCC.",
   openGraph: {
-    title: "ExpertOS",
-    description: "Цифровая платформа для судебных экспертов в Омане",
+    title: "Tilqai — AI Solutions for Oman",
+    description: "AI-powered automation for operations, compliance, and business processes.",
     type: "website",
   },
 };
@@ -30,9 +30,9 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={cn("min-h-screen bg-background antialiased relative", manrope.className)}>
+      <body className={cn("min-h-screen bg-background antialiased relative", inter.className)}>
         {/* Layer 1: Dark base background */}
         <div className="fixed inset-0 z-[-3] pointer-events-none bg-[#040405]" />
         {/* Layer 2: Star particles — z-[-1] so section bg images at z-[-2] sit below */}

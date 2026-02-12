@@ -24,7 +24,7 @@ export default function IndustriesSection() {
                         {t.headline[lang]}
                     </h2>
 
-                    <div className="flex flex-col items-start gap-3 md:ml-[10%]">
+                    <div className="flex flex-col items-start gap-3 md:ms-[10%]">
                         <p className="text-white/50 text-sm leading-relaxed">
                             {lang === 'en' ? "Where we've built and deployed AI systems." : "حيث بنينا ونشرنا أنظمة الذكاء الاصطناعي."}
                         </p>

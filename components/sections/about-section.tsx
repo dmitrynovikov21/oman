@@ -46,8 +46,8 @@ export default function AboutSection() {
                     <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12">
                         {/* Founder Avatar */}
                         <div className="flex-shrink-0 relative">
-                            <div className="w-40 h-40 md:w-52 md:h-52 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-6xl overflow-hidden border-2 border-[#0164F7]/30 shadow-[0_0_30px_rgba(1,100,247,0.15)]">
-                                <span className="opacity-80">👨🏽‍💼</span>
+                            <div className="w-40 h-40 md:w-52 md:h-52 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center overflow-hidden border-2 border-[#0164F7]/30 shadow-[0_0_30px_rgba(1,100,247,0.15)]">
+                                <img src="/t.png" alt="Tariq Al Maskari" className="w-full h-full object-cover" />
                             </div>
                             <div className="absolute -bottom-3 right-2 bg-[#040405] border border-[#0164F7]/30 px-3 py-1.5 rounded-full text-blue-400 text-xs font-medium">
                                 {lang === 'en' ? 'Founder' : 'المؤسس'}
@@ -67,9 +67,9 @@ export default function AboutSection() {
                             </p>
 
                             <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-                                <Badge>Harvard Business School</Badge>
-                                <Badge>CIPD</Badge>
-                                <Badge>{lang === 'en' ? 'Ministry of Justice' : 'وزارة العدل'}</Badge>
+                                {t.founder.credentials?.map((cred, i) => (
+                                    <Badge key={i}>{cred[lang]}</Badge>
+                                ))}
                             </div>
                         </div>
                     </div>

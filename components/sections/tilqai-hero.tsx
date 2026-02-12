@@ -10,12 +10,34 @@ export default function TilqaiHero() {
 
     return (
         <section className="relative min-h-screen overflow-hidden">
-            {/* Background spiral — z-[-2] puts it below global stars (z-[-1]) but above dark bg (z-[-3]) */}
+            {/* Layer 1: Main hero media (spirals) — deepest */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden z-[-2]">
                 <img
                     src="/assets/hero/hero-left.png"
                     alt=""
                     className="absolute inset-0 w-full h-full object-cover"
+                />
+            </div>
+
+            {/* Layer 2: Gray squares — top and bottom vignettes */}
+            <div className="absolute inset-x-0 top-0 h-[30%] pointer-events-none z-[-1]"
+                style={{ background: 'linear-gradient(to bottom, rgba(12,12,18,0.7), transparent)' }} />
+            <div className="absolute inset-x-0 bottom-0 h-[30%] pointer-events-none z-[-1]"
+                style={{ background: 'linear-gradient(to top, rgba(12,12,18,0.7), transparent)' }} />
+
+            {/* Layer 3: Perspective grid lines — above gray squares */}
+            <div className="absolute inset-x-0 top-0 pointer-events-none z-[0] opacity-40">
+                <img
+                    src="/assets/hero/bg-lines-2.png"
+                    alt=""
+                    className="w-full h-auto"
+                />
+            </div>
+            <div className="absolute inset-x-0 bottom-0 pointer-events-none z-[0] opacity-40">
+                <img
+                    src="/assets/hero/bg-lines-1.png"
+                    alt=""
+                    className="w-full h-auto"
                 />
             </div>
 

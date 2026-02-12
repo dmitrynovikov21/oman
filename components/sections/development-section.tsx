@@ -30,7 +30,7 @@ const developmentContent = {
  * Cross-shaped 3-layer card arrangement with energy beam
  */
 export default function DevelopmentSection() {
-    const { lang } = useLanguage();
+    const { lang, isRTL } = useLanguage();
     const t = developmentContent;
 
     return (
@@ -40,7 +40,7 @@ export default function DevelopmentSection() {
                 src="/assets/reality/bg-main.png"
                 alt=""
                 className="absolute pointer-events-none z-[-2]"
-                style={{ top: '50%', right: '10%', transform: 'translateY(-50%)', width: '35%', height: '150%', objectFit: 'contain' }}
+                style={{ top: '50%', ...(isRTL ? { left: '10%' } : { right: '10%' }), transform: 'translateY(-50%)', width: '35%', height: '150%', objectFit: 'contain' }}
             />
 
             <div className="container mx-auto px-8 max-w-7xl relative">
@@ -74,7 +74,7 @@ export default function DevelopmentSection() {
                     <div className="relative flex items-center justify-center overflow-visible" style={{ minHeight: '480px' }}>
 
                         {/* Card composition — all cards same size, square */}
-                        <div className="relative overflow-visible mx-auto w-[320px] h-[300px] md:w-[540px] md:h-[460px]">
+                        <div className={`relative overflow-visible w-[320px] h-[300px] md:w-[540px] md:h-[460px] mx-auto ${isRTL ? '-translate-x-[10%]' : 'translate-x-[10%]'}`}>
 
                             {/* Human Layer — top center, z-20 (in front) */}
                             <div className="absolute z-20 w-[140px] h-[140px] md:w-[220px] md:h-[220px] top-0 left-1/2 -translate-x-1/2">
@@ -88,7 +88,7 @@ export default function DevelopmentSection() {
                             </div>
 
                             {/* AI Layer — bottom left, z-10 (behind Human) */}
-                            <div className="absolute z-10 w-[140px] h-[140px] md:w-[220px] md:h-[220px] top-[36%] left-0">
+                            <div className="absolute z-10 w-[140px] h-[140px] md:w-[220px] md:h-[220px] top-[36%] start-0">
                                 <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
                                     <img src="/assets/reality/card-2.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
                                     <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
@@ -99,7 +99,7 @@ export default function DevelopmentSection() {
                             </div>
 
                             {/* Infrastructure Layer — bottom right, z-10 (behind Human) */}
-                            <div className="absolute z-10 w-[140px] h-[140px] md:w-[220px] md:h-[220px] top-[36%] md:top-[45%] right-0 md:-right-4">
+                            <div className="absolute z-10 w-[140px] h-[140px] md:w-[220px] md:h-[220px] top-[36%] md:top-[45%] end-0 md:-end-4">
                                 <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
                                     <img src="/assets/reality/card-3.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
                                     <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">

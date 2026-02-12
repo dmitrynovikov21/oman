@@ -24,18 +24,7 @@ export default function AccountabilitySection() {
                     <img
                         src="/assets/applications/clear.png"
                         alt=""
-                        style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '55%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            objectPosition: 'left center',
-                            pointerEvents: 'none',
-                            zIndex: 0,
-                            mixBlendMode: 'screen',
-                        }}
+                        className="absolute -bottom-[15%] -right-[10%] w-[75%] h-[120%] object-cover object-center pointer-events-none z-0 mix-blend-screen rotate-180"
                     />
 
 

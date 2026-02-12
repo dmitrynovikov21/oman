@@ -23,16 +23,15 @@ export default function WhyUsSection() {
         <section id="why-us" className="relative py-24 overflow-hidden">
             <div className="container mx-auto px-8 max-w-7xl">
                 {/* Main container — transparent, but keeping border */}
-                <div className="relative rounded-3xl border border-blue-500/30 overflow-hidden">
-                    {/* Background Image — clear.png blue streaks, z-[-2] puts it below global stars */}
-                    <div className="absolute inset-0 z-[-2]">
-                        <img
-                            src="/assets/applications/clear.png"
-                            alt=""
-                            className="absolute inset-0 object-cover object-left"
-                            style={{ width: '65%', height: '100%', mixBlendMode: 'screen' }}
-                        />
-                    </div>
+                <div
+                    className="relative rounded-3xl border border-blue-500/30 overflow-hidden"
+                    style={{
+                        backgroundImage: 'url(/assets/applications/clear.png)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                    }}
+                >
 
                     <div className="relative z-10 grid lg:grid-cols-[45%_1fr] min-h-[600px]">
 
@@ -59,7 +58,7 @@ export default function WhyUsSection() {
                                 return (
                                     <div
                                         key={index}
-                                        className={`relative p-7 flex flex-col ${isAccent ? 'justify-center' : 'justify-start'} rounded-3xl border overflow-hidden transition-all duration-300 ${isAccent
+                                        className={`relative p-7 flex flex-col ${isAccent ? 'justify-end' : 'justify-start'} rounded-3xl border overflow-hidden transition-all duration-300 ${isAccent
                                             ? 'border-blue-500/30'
                                             : 'bg-[#0a1a3a]/40 backdrop-blur-xl border-white/5 hover:bg-[#0a1a3a]/50'
                                             }`}
@@ -89,18 +88,22 @@ export default function WhyUsSection() {
                                                 </div>
                                             )}
 
-                                            {/* Bottom: Title & Description */}
-                                            <div className={isAccent ? 'mt-0' : 'mt-4'}>
-                                                <h3 className={`font-semibold leading-snug text-white ${isAccent ? 'text-2xl font-bold mb-3' : 'text-lg mb-2'
+                                            {/* Title */}
+                                            <div className={!isAccent ? 'mt-4' : ''}>
+                                                <h3 className={`font-semibold leading-snug text-white ${isAccent ? 'text-2xl font-bold' : 'text-lg mb-2'
                                                     }`}>
                                                     {card.title[lang]}
                                                 </h3>
-
-                                                <p className={`text-sm leading-relaxed ${isAccent ? 'text-white/90' : 'text-white/60'
-                                                    }`}>
-                                                    {card.description[lang]}
-                                                </p>
                                             </div>
+
+                                            {/* Spacer for accent card */}
+                                            {isAccent && <div className="flex-grow" />}
+
+                                            {/* Description */}
+                                            <p className={`text-sm leading-relaxed ${isAccent ? 'text-white/90' : 'text-white/60'
+                                                }`}>
+                                                {card.description[lang]}
+                                            </p>
                                         </div>
                                     </div>
                                 );

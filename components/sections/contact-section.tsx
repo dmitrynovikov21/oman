@@ -50,13 +50,13 @@ export default function ContactSection() {
                     <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
                         {t.headline[lang]}
                     </h2>
-                    <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-lg lg:text-right lg:pt-1">
+                    <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-lg lg:text-end lg:pt-1">
                         {t.subtitle[lang]}
                     </p>
                 </div>
 
                 {/* Calendly Widget — full-width card */}
-                <div className="rounded-xl border border-[#0164F7]/20 bg-transparent shadow-[0_0_15px_rgba(1,100,247,0.08),inset_0_1px_0_0_rgba(1,100,247,0.1)] overflow-hidden">
+                <div className="rounded-2xl overflow-hidden">
                     <div
                         className="calendly-inline-widget"
                         data-url="https://calendly.com/futurist-ai/30min?hide_gdpr_banner=1"

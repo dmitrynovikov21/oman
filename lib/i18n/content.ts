@@ -21,6 +21,10 @@ export const realityContent = {
         en: 'Most teams spend hours every week on work that should not need a person. Writing proposals, screening CVs, moving data across systems, and checking compliance.',
         ar: 'معظم الفرق تهدر ساعات أسبوعياً في أعمال لا تحتاج لتدخل بشري. كتابة عروض الخدمات، فرز السير الذاتية، نقل البيانات بين الأنظمة، ومراجعة الامتثال.',
     },
+    hookTitle: {
+        en: 'Headcount scales expenses.\nAutomation scales results.',
+        ar: 'زيادة الموظفين تُضاعف التكاليف.\nالأتمتة تُضاعف النتائج.',
+    },
     hookLine1: { en: 'You do not need more people.', ar: 'أنت لست بحاجة لمزيد من الموظفين.' },
     hookLine2: {
         en: 'You need a workflow that does not break.',
@@ -48,10 +52,10 @@ export const applicationsContent = {
             },
         },
         {
-            title: { en: 'HR Management', ar: 'إدارة الموارد البشرية' },
+            title: { en: 'HR Screening', ar: 'الموارد البشرية' },
             description: {
-                en: 'Workforce Planning to Off-boarding and every routine task in between',
-                ar: 'من تخطيط الاحتياجات الوظيفية إلى إنهاء الخدمة وكل المهام الروتينية بينهما',
+                en: 'Shortlisting, scheduling, and interview summaries for faster hiring.',
+                ar: 'فرز السير الذاتية وجدولة المقابلات وملخصات التوظيف لسرعة القرار.',
             },
         },
         {
@@ -78,38 +82,38 @@ export const howWeDeliverContent = {
     phases: [
         {
             num: '01',
-            title: { en: 'Assessment', ar: 'التقييم' },
+            title: { en: 'Map (1 week)', ar: 'التخطيط (أسبوع واحد)' },
             subtitle: { en: 'We learn how your business runs', ar: 'نتعلم كيف يعمل نشاطك التجاري' },
             description: {
-                en: 'We map your processes, find bottlenecks, see where data lives. We figure out which tasks AI can take over and what results to expect.',
-                ar: 'نرسم خريطة عملياتك ونجد نقاط الاختناق ونحدد أين توجد البيانات. نحدد المهام التي يمكن للذكاء الاصطناعي تولّيها والنتائج المتوقعة.',
+                en: 'Document workflow, find delays, define scope, and agree on success metrics.',
+                ar: 'توثيق سير العمل واكتشاف التأخير وتحديد النطاق والاتفاق على مقاييس النجاح.',
             },
         },
         {
             num: '02',
-            title: { en: 'Build & Connect', ar: 'البناء والربط' },
+            title: { en: 'Build (4-12 weeks)', ar: 'البناء (4-12 أسبوعاً)' },
             subtitle: { en: 'We build the system and plug it in', ar: 'نبني النظام ونوصله' },
             description: {
-                en: 'Custom AI for your tasks. Connected to your tools, your data, your workflows. Works inside your existing setup.',
-                ar: 'ذكاء اصطناعي مخصص لمهامك. متصل بأدواتك وبياناتك وسير عملك. يعمل داخل بنيتك الحالية.',
+                en: 'Create automation, connect systems, and test with real cases.',
+                ar: 'بناء الأتمتة وربط الأنظمة والاختبار بحالات واقعية.',
             },
         },
         {
             num: '03',
-            title: { en: 'Rules & Control', ar: 'القواعد والتحكم' },
+            title: { en: 'Control (1 week)', ar: 'الضبط (أسبوع واحد)' },
             subtitle: { en: 'We set boundaries and access', ar: 'نضع الحدود وصلاحيات الوصول' },
             description: {
-                en: 'Who sees what. What AI can and cannot do. How decisions are logged. Ready for audits from day one.',
-                ar: 'من يرى ماذا. ما يستطيع الذكاء الاصطناعي فعله وما لا يستطيع. كيف تُسجَّل القرارات. جاهز للتدقيق من اليوم الأول.',
+                en: 'Permissions, boundaries, logs, and security checks.',
+                ar: 'إدارة الصلاحيات والحدود وسجلات المراقبة وفحص الأمان.',
             },
         },
         {
             num: '04',
-            title: { en: 'Training & Launch', ar: 'التدريب والإطلاق' },
+            title: { en: 'Own (2 weeks)', ar: 'التمكين (أسبوعان)' },
             subtitle: { en: 'We train your team until they\nown it', ar: 'ندرب فريقك حتى يتقنه' },
             description: {
-                en: 'We roll out gradually. Train people, collect feedback, adjust. Done when your team runs it without us.',
-                ar: 'ننشر تدريجياً. ندرب الأشخاص ونجمع الملاحظات ونعدّل. ننتهي عندما يدير فريقك النظام بدوننا.',
+                en: 'Training, documentation, scenario practice, and full handover.',
+                ar: 'التدريب والتوثيق وممارسة السيناريوهات والتسليم النهائي.',
             },
         },
     ],
@@ -167,24 +171,24 @@ export const industriesContent = {
         {
             title: { en: 'Regulated industries', ar: 'القطاعات الخاضعة للوائح' },
             description: {
-                en: 'Healthcare, finance, legal. Where compliance matters and errors cost.',
-                ar: 'الرعاية الصحية، المالية، القانون. حيث الامتثال مهم والأخطاء مكلفة.',
+                en: 'For repetitive documents, manual checks, and high error risks.',
+                ar: 'لأتمتة الوثائق المتكررة والفحوصات اليدوية وتقليل مخاطر الأخطاء.',
             },
             icon: '/5screen/icons 1.png',
         },
         {
             title: { en: 'Government', ar: 'القطاع الحكومي' },
             description: {
-                en: 'Systems that handle citizen-facing processes. Transparent, auditable, built for public accountability.',
-                ar: 'أنظمة تتعامل مع العمليات المواجهة للمواطنين. شفافة وقابلة للتدقيق ومبنية للمساءلة العامة.',
+                en: 'For high volume requests, routing delays, and eligibility checks.',
+                ar: 'لإدارة الطلبات الضخمة وتوجيه المعاملات والتحقق من الأهلية.',
             },
             icon: '/5screen/icons 2.png',
         },
         {
             title: { en: 'Enterprise', ar: 'المؤسسات الكبرى' },
             description: {
-                en: 'Systems for mid-size and large companies. Back-office operations that scale without adding headcount.',
-                ar: 'أنظمة للشركات المتوسطة والكبيرة. عمليات المكتب الخلفي التي تتوسع دون زيادة عدد الموظفين.',
+                en: 'For data consistency, reporting delays, and CRM hygiene.',
+                ar: 'لضبط توافق البيانات وتسريع التقارير وتجويد بيانات إدارة العملاء.',
             },
             icon: '/5screen/icons 3.png',
         },
@@ -258,12 +262,16 @@ export const faqContent = {
 // ─── ABOUT + FOUNDER ─────────────────────────────────
 export const aboutContent = {
     badge: { en: 'About tilqai', ar: 'عن تلقائي' },
+    subheadline: {
+        en: 'Built by strategic experts. We are not software developers; we are leaders who have translated complex policy into operational reality.',
+        ar: 'بنيت بخبرات استراتيجية. لسنا مطوري برمجيات، بل قيادات تحول السياسات المعقدة إلى واقع تشغيلي ملموس.',
+    },
     sections: [
         {
             title: { en: 'What Tilqai Is', ar: 'ما هي تلقائي؟' },
             body: {
-                en: 'Tilqai is built by operators with years of experience inside organizations, not by software developers.',
-                ar: 'تلقائي خدمة تهدف إلى تحسين طريقة سير العمل داخل المؤسسات. تأسست بخبرة تشغيلية حقيقية، وليس من قبل مطوري برمجيات.',
+                en: 'Built by strategic experts. We are not software developers; we are leaders who have translated complex policy into operational reality.',
+                ar: 'بنيت بخبرات استراتيجية. لسنا مطوري برمجيات، بل قيادات تحول السياسات المعقدة إلى واقع تشغيلي ملموس.',
             },
         },
         {
@@ -285,9 +293,15 @@ export const aboutContent = {
         label: { en: 'The Founder - Managing Director', ar: 'المؤسس – المدير التنفيذي' },
         name: { en: 'Tariq Al Maskari', ar: 'طارق المسكري' },
         bio: {
-            en: 'A professional expert with 15+ years of cross-sector experience. Backed by Harvard Business School leadership executive training, CIPD certification, and accreditation with the Ministry of Justice and Legal Affairs, he delivers systematic business assessments and practical technical solutions with a focus on streamlining operations and driving performance efficiency to meet organizational goals.',
-            ar: 'خبير مهني يتمتع بأكثر من 15 عاماً من الخبرات في مؤسسات بقطاعات مختلفة، ويحمل مؤهلات قيادية من كلية هارفرد للأعمال وشهادة الموارد البشرية المهنية CIPD، وخبير موارد بشرية مقيد لدى وزارة العدل والشؤون القانونية، يعمل على توفير قراءة ممنهجة لتحسين الأعمال، وتقديم الحلول العملية والتقنية المرتبطة بسلاسة العمليات، ورفع كفاءة الأداء للوصول الى مستهدفات الاعمال العامة بالمؤسسات.',
+            en: 'With over 15 years of leadership across Telecom, Logistics, Manufacturing and Investments, specializes in bridging the gap between human workforce needs and digital efficiency.',
+            ar: 'بخبرة قيادية تجاوزت 15 عاماً في قطاعات مختلفة منها الاتصالات واللوجستيات والصناعة والاستثمار، والتخصص في سد الفجوة بين احتياجات القوى العاملة والكفاءة الرقمية.',
         },
+        credentials: [
+            { en: 'Harvard Business School (Leadership and Strategy)', ar: 'شهادة مهنية من كلية هارفارد للأعمال (القيادة والاستراتيجية)' },
+            { en: 'Charted HR Expert in Oman Courts', ar: 'خبير جدول للموارد بشرية معتمد لدى محاكم السلطنة' },
+            { en: 'Chartered Institute of Personnel and Development (CIPD)', ar: 'شهادة مهنية في إدارة الموارد البشرية' },
+            { en: 'Bachelor Degree in Business Management', ar: 'شهادة بكالوريوس إدارة الاعمال' },
+        ],
     },
 };
 
@@ -323,6 +337,36 @@ export const contactContent = {
             { en: 'We schedule a discovery call.', ar: 'نجدول مكالمة تعريفية' },
             { en: 'We map your process and provide an automation plan.', ar: 'نرسم مسار عملك ونقدم لك خطة أتمتة واضحة.' },
         ],
+    },
+};
+
+// ─── ROI CALCULATOR ──────────────────────────────────
+export const roiContent = {
+    badge: { en: 'RETURN ON INVESTMENT', ar: 'عائد الاستثمار' },
+    headline: { en: 'ROI Calculator', ar: 'حاسبة العائد على الاستثمار' },
+    formTitle: { en: 'Estimate Your Savings', ar: 'احسب وفوراتك' },
+    formSubtitle: { en: 'Enter your team details', ar: 'أدخل تفاصيل فريقك' },
+    labels: {
+        teamSize: { en: 'Team Size', ar: 'حجم الفريق' },
+        salary: { en: 'Average Monthly Salary (OMR)', ar: 'متوسط الراتب الشهري (ر.ع)' },
+        weeklyHours: { en: 'Weekly Routine Hours', ar: 'ساعات العمل الروتينية الأسبوعية' },
+        workflowSteps: { en: 'Workflow Steps', ar: 'خطوات سير العمل' },
+        steps: { en: 'steps', ar: 'خطوات' },
+    },
+    calculateBtn: { en: 'Calculate ROI', ar: 'احسب العائد' },
+    resultsTitle: { en: 'ESTIMATED RESULTS', ar: 'النتائج المقدّرة' },
+    results: {
+        savings: { en: 'Monthly savings', ar: 'الوفورات الشهرية' },
+        payback: { en: 'Payback period', ar: 'فترة الاسترداد' },
+        hoursSaved: { en: 'Hours saved / month', ar: 'ساعات الوفر / شهر' },
+        delayReduction: { en: 'Delay reduction', ar: 'تقليل التأخير' },
+        monthsUnit: { en: 'months', ar: 'شهر' },
+        hrsUnit: { en: 'hrs', ar: 'ساعة' },
+    },
+    reportBtn: { en: 'Get Full ROI Report', ar: 'احصل على تقرير عائد الاستثمار الكامل' },
+    disclaimer: {
+        en: 'Estimates only; final ROI depends on process scope.',
+        ar: 'تقديرات فقط؛ العائد النهائي يعتمد على نطاق العمليات.',
     },
 };
 
