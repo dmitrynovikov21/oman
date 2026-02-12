@@ -71,10 +71,10 @@ export default function DevelopmentSection() {
                     </div>
 
                     {/* Right side — Inverted-T card composition */}
-                    <div className="relative flex items-center justify-center overflow-visible" style={{ minHeight: '480px' }}>
+                    <div className="relative flex items-center justify-center overflow-visible" style={{ minHeight: '320px' }}>
 
                         {/* Card composition — all cards same size, square */}
-                        <div className={`relative overflow-visible w-[320px] h-[300px] md:w-[540px] md:h-[460px] mx-auto ${isRTL ? '-translate-x-[10%]' : 'translate-x-[10%]'}`}>
+                        <div className={`relative overflow-visible w-[280px] h-[280px] md:w-[540px] md:h-[460px] mx-auto ${isRTL ? 'md:-translate-x-[10%]' : 'md:translate-x-[10%]'}`}>
 
                             {/* Human Layer — top center, z-20 (in front) */}
                             <div className="absolute z-20 w-[140px] h-[140px] md:w-[220px] md:h-[220px] top-0 left-1/2 -translate-x-1/2">

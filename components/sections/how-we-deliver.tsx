@@ -30,7 +30,7 @@ export default function HowWeDeliver() {
                         backgroundSize: '128px 128px',
                     }}
                 />
-                <div className="container mx-auto px-8 max-w-7xl py-4 flex items-center justify-between relative z-10">
+                <div className="container mx-auto px-8 max-w-7xl py-4 flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10">
                     <span className="text-white text-lg font-medium">{nav.ctaBar[lang]}</span>
                     <Link
                         href="#contact"

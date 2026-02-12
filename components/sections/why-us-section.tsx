@@ -49,7 +49,7 @@ export default function WhyUsSection() {
 
                         {/* Right Column — 2×2 glass cards */}
                         {/* grid-rows-[1.5fr_1fr] makes the top row significantly taller (~60/40 split) */}
-                        <div className="grid grid-cols-2 gap-4 p-8 lg:p-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6 md:p-8 lg:p-8">
                             {t.cards.map((card, index) => {
                                 const isAccent = 'isAccent' in card && card.isAccent;
                                 // @ts-ignore - we know these keys exist in content mapping
