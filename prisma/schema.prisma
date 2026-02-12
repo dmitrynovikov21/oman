@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -268,5 +268,45 @@ model AnalyticsCache {
   calculatedAt    DateTime @default(now()) @map("calculated_at")
   
   @@map("analytics_cache")
+}
+
+// =====================
+// CHAT BOT
+// =====================
+
+model ChatSession {
+  id        String   @id @default(cuid())
+  sessionId String   @unique @map("session_id")
+  lang      String   @default("en")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  messages ChatMessage[]
+
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id            String   @id @default(cuid())
+  chatSessionId String   @map("chat_session_id")
+  role          String   // "user" | "assistant"
+  content       String
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  session ChatSession @relation(fields: [chatSessionId], references: [id], onDelete: Cascade)
+
+  @@map("chat_messages")
+}
+
+model ChatLead {
+  id        String   @id @default(cuid())
+  sessionId String?  @map("session_id")
+  name      String
+  email     String
+  company   String?
+  message   String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("chat_leads")
 }
 
