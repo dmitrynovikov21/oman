@@ -52,7 +52,7 @@ export default function AccountabilitySection() {
                                         className="p-5 rounded-lg border border-[#031836] bg-[#031836]/60 backdrop-blur-md flex flex-col justify-start"
                                     >
                                         {iconSrc && (
-                                            <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center mb-3 shrink-0">
+                                            <div className="w-9 h-9 rounded-lg bg-[#0a1a3a]/40 backdrop-blur-xl border border-white/5 flex items-center justify-center mb-3 shrink-0">
                                                 <img src={iconSrc} alt="" className="w-5 h-5" />
                                             </div>
                                         )}
@@ -75,7 +75,7 @@ export default function AccountabilitySection() {
                                     <>
                                         <div className="p-5 rounded-lg border border-[#031836] bg-[#031836]/60 backdrop-blur-md">
                                             {supportIcon && (
-                                                <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                                                <div className="w-9 h-9 rounded-lg bg-[#0a1a3a]/40 backdrop-blur-xl border border-white/5 flex items-center justify-center mb-4">
                                                     <img src={supportIcon} alt="" className="w-5 h-5" />
                                                 </div>
                                             )}
