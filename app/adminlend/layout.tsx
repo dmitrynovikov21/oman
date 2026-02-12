@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { useSearchParams, usePathname } from "next/navigation"
 import Link from "next/link"
 import { LayoutDashboard, FileText, Users, Files, ArrowLeft, Lock } from "lucide-react"
@@ -15,7 +15,7 @@ const navItems = [
     { href: "/adminlend/pages", label: "Pages", icon: Files },
 ]
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+function AdminLayoutInner({ children }: { children: React.ReactNode }) {
     const searchParams = useSearchParams()
     const pathname = usePathname()
     const [authorized, setAuthorized] = useState(false)
@@ -23,7 +23,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const [error, setError] = useState("")
 
     useEffect(() => {
-        // Support URL param for backwards compat
         const secret = searchParams.get("secret")
         if (secret === ADMIN_SECRET) {
             sessionStorage.setItem("admin_auth", "true")
@@ -82,7 +81,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     return (
         <div className="min-h-screen bg-zinc-950 flex">
-            {/* Sidebar */}
             <aside className="w-64 bg-zinc-900 border-r border-zinc-800 flex flex-col">
                 <div className="p-6 border-b border-zinc-800">
                     <h1 className="text-lg font-bold text-white">Tilqai Admin</h1>
@@ -117,7 +115,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </div>
             </aside>
 
-            {/* Main Content */}
             <main className="flex-1 overflow-auto">
                 <div className="p-8">
                     {children}
@@ -125,5 +122,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </main>
             <Toaster theme="dark" position="top-right" richColors closeButton />
         </div>
+    )
+}
+
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
+                <div className="text-zinc-500">Loading...</div>
+            </div>
+        }>
+            <AdminLayoutInner>{children}</AdminLayoutInner>
+        </Suspense>
     )
 }
