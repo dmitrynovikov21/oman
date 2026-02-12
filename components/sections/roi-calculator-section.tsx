@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Clock, TrendingDown, Zap, Calculator, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Calculator, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/context';
 import { roiContent } from '@/lib/i18n/content';
 
@@ -45,7 +45,7 @@ function calculateROI(inputs: ROIInputs): ROIResults {
 /* ─── Metric Cards Data ───────────────────────────────── */
 const metrics = [
     {
-        icon: Clock,
+        icon: '/assets/icons/clock.png',
         value: '20–80',
         unit: { en: 'HRS / MONTH', ar: 'ساعة / شهر' },
         title: { en: 'Hours Saved Monthly', ar: 'ساعات موفّرة شهرياً' },
@@ -55,7 +55,7 @@ const metrics = [
         },
     },
     {
-        icon: TrendingDown,
+        icon: '/assets/icons/trending-down.png',
         value: '15–35%',
         unit: { en: 'COST REDUCTION', ar: 'خفض التكاليف' },
         title: { en: 'Operational Cost Reduction', ar: 'خفض تكاليف التشغيل' },
@@ -65,7 +65,7 @@ const metrics = [
         },
     },
     {
-        icon: Zap,
+        icon: '/assets/icons/zap.png',
         value: '2–5x',
         unit: { en: 'FASTER', ar: 'أسرع' },
         title: { en: 'Faster Cycle Time', ar: 'وقت دورة أسرع' },
@@ -142,7 +142,7 @@ export default function ROICalculatorSection() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                         {metrics.map((metric, i) => {
-                            const Icon = metric.icon;
+                            const iconPath = metric.icon;
                             return (
                                 <div
                                     key={i}
@@ -156,7 +156,7 @@ export default function ROICalculatorSection() {
                                         {/* Icon + Index */}
                                         <div className="flex items-center justify-between mb-6">
                                             <div className="w-12 h-12 rounded-xl bg-[#0a1a3a]/40 backdrop-blur-xl border border-white/5 flex items-center justify-center">
-                                                <Icon className="w-5 h-5 text-blue-400" />
+                                                <img src={iconPath} alt="" className="w-5 h-5 object-contain" />
                                             </div>
                                             <span className="text-blue-500 text-xs font-medium tracking-wide opacity-80">
                                                 {String(i + 1).padStart(2, '0')}

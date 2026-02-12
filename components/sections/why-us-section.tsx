@@ -2,13 +2,12 @@
 
 import { useLanguage } from "@/lib/i18n/context";
 import { whyUsContent } from "@/lib/i18n/content";
-import { Lock, ArrowUpRight, Layers } from 'lucide-react';
 
-// Icon mapping
-const iconMap = {
-    'lock': Lock,
-    'arrow-up-right': ArrowUpRight,
-    'layers': Layers,
+// Icon mapping — AI-generated solid-blue-fill PNGs
+const iconMap: Record<string, string | null> = {
+    'lock': '/assets/icons/lock.png',
+    'arrow-up-right': '/assets/icons/growth.png',
+    'layers': '/assets/icons/layers.png',
     'none': null,
 };
 
@@ -84,7 +83,7 @@ export default function WhyUsSection() {
                                             {/* Top: Icon (if present) */}
                                             {!isAccent && IconComponent && (
                                                 <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-3">
-                                                    <IconComponent className="w-5 h-5 text-white stroke-[1.5]" />
+                                                    <img src={IconComponent} alt="" className="w-5 h-5 object-contain" />
                                                 </div>
                                             )}
 

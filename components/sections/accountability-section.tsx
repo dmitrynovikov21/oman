@@ -4,9 +4,9 @@ import { useLanguage } from "@/lib/i18n/context";
 import { whyUsContent } from "@/lib/i18n/content";
 
 const cardIcons: Record<string, string> = {
-    'lock': '/assets/why-us/icon-1.png',
-    'arrow-up-right': '/assets/why-us/icon-2.png',
-    'layers': '/assets/why-us/icon-3.png',
+    'lock': '/assets/icons/lock.png',
+    'arrow-up-right': '/assets/icons/growth.png',
+    'layers': '/assets/icons/layers.png',
 };
 
 export default function AccountabilitySection() {

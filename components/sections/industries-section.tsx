@@ -3,13 +3,6 @@
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 import { industriesContent } from "@/lib/i18n/content";
-import { ShieldCheck, Building2, Sparkles } from "lucide-react";
-
-const industryIcons = [
-    <ShieldCheck key="shield" className="w-6 h-6 text-blue-400" />,
-    <Building2 key="building" className="w-6 h-6 text-blue-400" />,
-    <Sparkles key="sparkles" className="w-6 h-6 text-blue-400" />,
-];
 
 export default function IndustriesSection() {
     const { lang } = useLanguage();
