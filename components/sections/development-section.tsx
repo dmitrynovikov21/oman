@@ -95,7 +95,7 @@ export default function DevelopmentSection() {
                             </div>
 
                             {/* AI Layer — bottom left, z-10 */}
-                            <div className="absolute z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[46%] md:top-[36%] start-0">
+                            <div className="absolute z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[43%] md:top-[36%] start-0">
                                 <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
                                     <img src="/assets/reality/card-2.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
                                     <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
@@ -106,7 +106,7 @@ export default function DevelopmentSection() {
                             </div>
 
                             {/* Infrastructure Layer — bottom right, z-10 */}
-                            <div className="absolute z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[46%] md:top-[45%] end-0 md:-end-4">
+                            <div className="absolute z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[41%] md:top-[45%] end-0 md:-end-4">
                                 <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
                                     <img src="/assets/reality/card-3.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
                                     <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
