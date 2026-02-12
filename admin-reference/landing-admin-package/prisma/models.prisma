@@ -1,0 +1,76 @@
+// ==================== LANDING ADMIN MODELS ====================
+// Скопировать этот код в ваш prisma/schema.prisma
+
+enum ArticleCategory {
+  GUIDE
+  BLOG
+  CASE
+  NEWS
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Article {
+  id               String          @id @default(uuid())
+  slug             String          @unique
+  title            String
+  description      String?
+  contentJson      Json?           @map("content_json")
+  category         ArticleCategory @default(BLOG)
+  status           ArticleStatus   @default(DRAFT)
+  isFeaturedOnHome Boolean         @default(false) @map("is_featured_on_home")
+  coverImageUrl    String?         @map("cover_image_url")
+  createdAt        DateTime        @default(now()) @map("created_at")
+  updatedAt        DateTime        @updatedAt @map("updated_at")
+
+  @@map("articles")
+}
+
+model MediaLibrary {
+  id         String   @id @default(uuid())
+  url        String
+  promptUsed String?  @map("prompt_used")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("media_library")
+}
+
+model Lead {
+  id        String   @id @default(uuid())
+  email     String
+  name      String?
+  phone     String?
+  comment   String?
+  status    String   @default("NEW") // NEW, CONTACTED, CLOSED
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("leads")
+}
+
+model Subscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  source    String?  // "footer", "popup", "hero"
+  ipAddress String?  @map("ip_address")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("subscribers")
+}
+
+model Page {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  title       String
+  description String?
+  htmlContent String   @db.Text @map("html_content")
+  isPublished Boolean  @default(false) @map("is_published")
+  sortOrder   Int      @default(0) @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("pages")
+}

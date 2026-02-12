@@ -6,6 +6,7 @@ import HowWeDeliver from "@/components/sections/how-we-deliver";
 import WhyUsSection from "@/components/sections/why-us-section";
 import IndustriesSection from "@/components/sections/industries-section";
 import ROICalculatorSection from "@/components/sections/roi-calculator-section";
+import BlogSection from "@/components/sections/blog-section";
 
 import FaqSection from "@/components/sections/faq-section";
 import AboutSection from "@/components/sections/about-section";
@@ -23,6 +24,7 @@ export default function IndexPage() {
       <WhyUsSection />
       <IndustriesSection />
       <ROICalculatorSection />
+      <BlogSection />
 
       <FaqSection />
       <AboutSection />
@@ -31,3 +33,4 @@ export default function IndexPage() {
     </>
   );
 }
+
