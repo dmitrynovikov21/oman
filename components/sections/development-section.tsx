@@ -40,7 +40,7 @@ export default function DevelopmentSection() {
                 src="/assets/reality/bg-main.png"
                 alt=""
                 className="absolute pointer-events-none z-[-2] md:hidden"
-                style={{ top: isRTL ? '70%' : '50%', ...(isRTL ? { left: '35%' } : { right: '10%' }), transform: 'translateY(-50%)', width: isRTL ? '42%' : '35%', height: isRTL ? '182%' : '150%', objectFit: 'contain' }}
+                style={{ top: isRTL ? '70%' : '50%', ...(isRTL ? { left: '30%' } : { right: '10%' }), transform: 'translateY(-50%)', width: isRTL ? '42%' : '35%', height: isRTL ? '182%' : '150%', objectFit: 'contain' }}
             />
             {/* Energy beam bg — DESKTOP (md+) */}
             <img
@@ -81,7 +81,7 @@ export default function DevelopmentSection() {
                     <div className="relative flex items-center justify-center overflow-visible" style={{ minHeight: '320px' }}>
 
                         {/* Card composition — inverted-T arrangement */}
-                        <div className={`relative overflow-visible w-[340px] h-[340px] md:w-[540px] md:h-[460px] mx-auto ${isRTL ? 'md:-translate-x-[10%]' : 'md:translate-x-[10%]'}`}>
+                        <div className={`relative overflow-visible w-[360px] h-[360px] md:w-[540px] md:h-[460px] mx-auto ${isRTL ? 'md:-translate-x-[10%]' : 'md:translate-x-[10%]'}`}>
 
                             {/* Human Layer — top center, z-20 (in front) */}
                             <div className="absolute z-20 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-0 left-1/2 -translate-x-1/2">
