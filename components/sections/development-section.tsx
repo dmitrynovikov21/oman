@@ -40,7 +40,7 @@ export default function DevelopmentSection() {
                 src="/assets/reality/bg-main.png"
                 alt=""
                 className="absolute pointer-events-none z-[-2]"
-                style={{ top: '50%', ...(isRTL ? { left: '10%' } : { right: '10%' }), transform: 'translateY(-50%)', width: '35%', height: '150%', objectFit: 'contain' }}
+                style={{ ...{ top: '50%' }, ...(isRTL ? { left: '30%', top: '90%' } : { right: '10%' }), transform: 'translateY(-50%)', width: '35%', height: '150%', objectFit: 'contain' }}
             />
 
             <div className="container mx-auto px-8 max-w-7xl relative">
