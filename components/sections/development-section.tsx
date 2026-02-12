@@ -40,7 +40,7 @@ export default function DevelopmentSection() {
                 src="/assets/reality/bg-main.png"
                 alt=""
                 className="absolute pointer-events-none z-[-2] md:hidden"
-                style={{ top: isRTL ? '85%' : '50%', ...(isRTL ? { left: '27%' } : { right: '10%' }), transform: 'translateY(-50%)', width: isRTL ? '46%' : '35%', height: isRTL ? '200%' : '150%', objectFit: 'contain' }}
+                style={{ top: isRTL ? '85%' : '85%', ...(isRTL ? { left: '27%' } : { right: '27%' }), transform: 'translateY(-50%)', width: '46%', height: '200%', objectFit: 'contain' }}
             />
             {/* Energy beam bg — DESKTOP (md+) */}
             <img
