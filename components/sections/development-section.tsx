@@ -70,45 +70,62 @@ export default function DevelopmentSection() {
                         </p>
                     </div>
 
-                    {/* Right side — Inverted-T card composition */}
-                    <div className="relative flex items-center justify-center overflow-visible" style={{ minHeight: '320px' }}>
+                    {/* Right side — Card composition */}
+                    <div className="relative overflow-visible">
 
-                        {/* Card composition — all cards same size, square */}
-                        <div className={`relative overflow-visible w-[280px] h-[280px] md:w-[540px] md:h-[460px] mx-auto ${isRTL ? 'md:-translate-x-[10%]' : 'md:translate-x-[10%]'}`}>
-
-                            {/* Human Layer — top center, z-20 (in front) */}
-                            <div className="absolute z-20 w-[140px] h-[140px] md:w-[220px] md:h-[220px] top-0 left-1/2 -translate-x-1/2">
-                                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
-                                    <img src="/assets/reality/card-1.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
-                                    <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
-                                        <h3 className="text-white font-bold text-sm md:text-lg leading-tight">{t.cards[0].title[lang]}</h3>
-                                        <p className="text-white/70 text-[10px] md:text-sm leading-snug">{t.cards[0].desc[lang]}</p>
+                        {/* ===== MOBILE: Vertical card stack (below md) ===== */}
+                        <div className="flex flex-col gap-3 md:hidden">
+                            {t.cards.map((card, i) => (
+                                <div key={i} className="relative rounded-2xl overflow-hidden shadow-xl shadow-blue-500/20 ring-1 ring-blue-400/15">
+                                    <img src={`/assets/reality/card-${i + 1}.png`} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                                    <div className="relative z-10 p-4 flex items-center gap-4">
+                                        <div className="flex-1 min-w-0">
+                                            <h3 className="text-white font-bold text-base leading-tight">{card.title[lang]}</h3>
+                                            <p className="text-white/70 text-sm leading-snug mt-1">{card.desc[lang]}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            ))}
+                        </div>
 
-                            {/* AI Layer — bottom left, z-10 (behind Human) */}
-                            <div className="absolute z-10 w-[140px] h-[140px] md:w-[220px] md:h-[220px] top-[36%] start-0">
-                                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
-                                    <img src="/assets/reality/card-2.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
-                                    <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
-                                        <h3 className="text-white font-bold text-sm md:text-lg leading-tight">{t.cards[1].title[lang]}</h3>
-                                        <p className="text-white/70 text-[10px] md:text-sm leading-snug">{t.cards[1].desc[lang]}</p>
+                        {/* ===== DESKTOP: Inverted-T absolute composition (md+) ===== */}
+                        <div className={`hidden md:flex items-center justify-center overflow-visible`} style={{ minHeight: '480px' }}>
+                            <div className={`relative overflow-visible w-[540px] h-[460px] mx-auto ${isRTL ? '-translate-x-[10%]' : 'translate-x-[10%]'}`}>
+
+                                {/* Human Layer — top center, z-20 (in front) */}
+                                <div className="absolute z-20 w-[220px] h-[220px] top-0 left-1/2 -translate-x-1/2">
+                                    <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
+                                        <img src="/assets/reality/card-1.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
+                                        <div className="relative z-10 p-5 h-full flex flex-col justify-between">
+                                            <h3 className="text-white font-bold text-lg leading-tight">{t.cards[0].title[lang]}</h3>
+                                            <p className="text-white/70 text-sm leading-snug">{t.cards[0].desc[lang]}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Infrastructure Layer — bottom right, z-10 (behind Human) */}
-                            <div className="absolute z-10 w-[140px] h-[140px] md:w-[220px] md:h-[220px] top-[36%] md:top-[45%] end-0 md:-end-4">
-                                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
-                                    <img src="/assets/reality/card-3.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
-                                    <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
-                                        <h3 className="text-white font-bold text-sm md:text-lg leading-tight">{t.cards[2].title[lang]}</h3>
-                                        <p className="text-white/70 text-[10px] md:text-sm leading-snug">{t.cards[2].desc[lang]}</p>
+                                {/* AI Layer — bottom left, z-10 */}
+                                <div className="absolute z-10 w-[220px] h-[220px] top-[36%] start-0">
+                                    <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
+                                        <img src="/assets/reality/card-2.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
+                                        <div className="relative z-10 p-5 h-full flex flex-col justify-between">
+                                            <h3 className="text-white font-bold text-lg leading-tight">{t.cards[1].title[lang]}</h3>
+                                            <p className="text-white/70 text-sm leading-snug">{t.cards[1].desc[lang]}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
+                                {/* Infrastructure Layer — bottom right, z-10 */}
+                                <div className="absolute z-10 w-[220px] h-[220px] top-[45%] -end-4">
+                                    <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
+                                        <img src="/assets/reality/card-3.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
+                                        <div className="relative z-10 p-5 h-full flex flex-col justify-between">
+                                            <h3 className="text-white font-bold text-lg leading-tight">{t.cards[2].title[lang]}</h3>
+                                            <p className="text-white/70 text-sm leading-snug">{t.cards[2].desc[lang]}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
