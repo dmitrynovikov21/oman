@@ -35,12 +35,19 @@ export default function DevelopmentSection() {
 
     return (
         <section className="relative py-24 lg:py-32 overflow-x-clip">
-            {/* Energy beam bg — z-[-2] puts it below global stars (z-[-1]) */}
+            {/* Energy beam bg — MOBILE (below md) */}
             <img
                 src="/assets/reality/bg-main.png"
                 alt=""
-                className="absolute pointer-events-none z-[-2]"
-                style={{ ...{ top: '50%' }, ...(isRTL ? { left: '35%', top: '70%' } : { right: '10%' }), transform: 'translateY(-50%)', width: isRTL ? '38.5%' : '35%', height: isRTL ? '165%' : '150%', objectFit: 'contain' }}
+                className="absolute pointer-events-none z-[-2] md:hidden"
+                style={{ top: isRTL ? '70%' : '50%', ...(isRTL ? { left: '35%' } : { right: '10%' }), transform: 'translateY(-50%)', width: isRTL ? '42%' : '35%', height: isRTL ? '182%' : '150%', objectFit: 'contain' }}
+            />
+            {/* Energy beam bg — DESKTOP (md+) */}
+            <img
+                src="/assets/reality/bg-main.png"
+                alt=""
+                className="absolute pointer-events-none z-[-2] hidden md:block"
+                style={{ top: '50%', ...(isRTL ? { left: '10%' } : { right: '10%' }), transform: 'translateY(-50%)', width: '35%', height: '150%', objectFit: 'contain' }}
             />
 
             <div className="container mx-auto px-8 max-w-7xl relative">
@@ -74,7 +81,7 @@ export default function DevelopmentSection() {
                     <div className="relative flex items-center justify-center overflow-visible" style={{ minHeight: '320px' }}>
 
                         {/* Card composition — inverted-T arrangement */}
-                        <div className={`relative overflow-visible w-[320px] h-[320px] md:w-[540px] md:h-[460px] mx-auto ${isRTL ? 'md:-translate-x-[10%]' : 'md:translate-x-[10%]'}`}>
+                        <div className={`relative overflow-visible w-[340px] h-[340px] md:w-[540px] md:h-[460px] mx-auto ${isRTL ? 'md:-translate-x-[10%]' : 'md:translate-x-[10%]'}`}>
 
                             {/* Human Layer — top center, z-20 (in front) */}
                             <div className="absolute z-20 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-0 left-1/2 -translate-x-1/2">
@@ -88,7 +95,7 @@ export default function DevelopmentSection() {
                             </div>
 
                             {/* AI Layer — bottom left, z-10 */}
-                            <div className="absolute z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[42%] md:top-[36%] start-0">
+                            <div className="absolute z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[46%] md:top-[36%] start-0">
                                 <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
                                     <img src="/assets/reality/card-2.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
                                     <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
@@ -99,7 +106,7 @@ export default function DevelopmentSection() {
                             </div>
 
                             {/* Infrastructure Layer — bottom right, z-10 */}
-                            <div className="absolute z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[42%] md:top-[45%] end-0 md:-end-4">
+                            <div className="absolute z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[46%] md:top-[45%] end-0 md:-end-4">
                                 <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
                                     <img src="/assets/reality/card-3.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
                                     <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
