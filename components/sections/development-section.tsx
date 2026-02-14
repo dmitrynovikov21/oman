@@ -73,7 +73,7 @@ export default function DevelopmentSection() {
                     <div className="relative flex items-center justify-center overflow-visible min-h-[280px] md:min-h-[480px]">
 
                         {/* LaserFlow WebGL background */}
-                        <div className="absolute inset-0 z-0 pointer-events-none -left-[5%] md:left-[10%] top-[50%] md:top-[40%]" style={{ opacity: 0.7 }}>
+                        <div className="absolute right-0 bottom-0 z-0 pointer-events-none -left-[5%] md:left-[10%] top-[50%] md:top-[40%]" style={{ opacity: 0.7 }}>
                             <LaserFlow
                                 horizontalBeamOffset={0.0}
                                 verticalBeamOffset={0.0}

@@ -72,7 +72,7 @@ export default function ContactSection() {
                         background: #000000 !important;
                     }
                 `}</style>
-                <div className="w-full overflow-hidden" style={{ background: 'red' }}>
+                <div className="w-full overflow-hidden" style={{ background: '#000000' }}>
                     <div
                         className="calendly-inline-widget w-full"
                         data-url="https://calendly.com/futurist-ai/30min?hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=0066ff"
