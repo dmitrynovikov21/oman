@@ -1,81 +1,22 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
-import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 import { realityContent } from "@/lib/i18n/content";
+import Link from "next/link";
 
 /**
  * "The Reality" Hook Section
- * Layers (bottom→top): dark bg → blueelips.png (static, under card) → card (transparent) → text
- * Mouse-follow orb: vivid blue, tracks cursor with smooth lerp
+ * Clean dark section — no mouse-follow orb, just subtle card glow
  */
 export default function RealityHookSection() {
     const { lang } = useLanguage();
     const t = realityContent;
-    const sectionRef = useRef<HTMLElement>(null);
-    const orbRef = useRef<HTMLImageElement>(null);
-    const [isHovering, setIsHovering] = useState(false);
-
-    useEffect(() => {
-        const section = sectionRef.current;
-        const orb = orbRef.current;
-        if (!section || !orb) return;
-
-        let animId: number;
-        let targetX = 0;
-        let targetY = 0;
-        let currentX = 0;
-        let currentY = 0;
-        const LERP = 0.08;
-
-        const handleMouseMove = (e: MouseEvent) => {
-            const rect = section.getBoundingClientRect();
-            targetX = e.clientX - rect.left - rect.width / 2;
-            targetY = e.clientY - rect.top - rect.height / 2;
-        };
-
-        const animate = () => {
-            currentX += (targetX - currentX) * LERP;
-            currentY += (targetY - currentY) * LERP;
-            orb.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px))`;
-            animId = requestAnimationFrame(animate);
-        };
-
-        section.addEventListener('mousemove', handleMouseMove);
-        animId = requestAnimationFrame(animate);
-
-        return () => {
-            section.removeEventListener('mousemove', handleMouseMove);
-            cancelAnimationFrame(animId);
-        };
-    }, []);
 
     return (
-        <section
-            ref={sectionRef}
-            className="relative py-20 md:py-28 overflow-hidden"
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-        >
-            {/* Mouse-follow orb — vivid saturated blue */}
-            <img
-                ref={orbRef}
-                src="/assets/delivery/blueelips.png"
-                alt=""
-                className="absolute pointer-events-none z-[1] transition-opacity duration-500"
-                style={{
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '500px',
-                    height: '500px',
-                    objectFit: 'contain',
-                    opacity: isHovering ? 0.8 : 0.4,
-                    filter: 'saturate(2.5) brightness(1.3)',
-                    mixBlendMode: 'screen',
-                }}
-            />
+        <section className="relative py-20 md:py-28 overflow-hidden">
+            {/* Bottom gradient — smooth transition to next section */}
+            <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-20"
+                style={{ background: 'linear-gradient(to bottom, transparent, #040405)' }} />
 
             {/* Content layer */}
             <div className="container mx-auto px-8 max-w-5xl relative z-10">
@@ -93,24 +34,8 @@ export default function RealityHookSection() {
                     {t.body[lang]}
                 </p>
 
-                {/* Hook statement card — more transparent bg + static blueelips behind */}
-                <div className="relative rounded-2xl border border-[#0164F7]/15 p-8 md:p-12 mb-10 overflow-hidden">
-                    {/* Static blueelips.png — centered behind the card content */}
-                    <img
-                        src="/assets/delivery/blueelips.png"
-                        alt=""
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
-                        style={{
-                            width: '700px',
-                            height: '700px',
-                            objectFit: 'contain',
-                            opacity: 0.2,
-                        }}
-                    />
-
-                    {/* Semi-transparent dark overlay on card */}
-                    <div className="absolute inset-0 bg-[#040810]/40 backdrop-blur-[2px] z-[1] pointer-events-none" />
-
+                {/* Hook statement card — subtle border, no blue orb */}
+                <div className="relative rounded-2xl border border-[#0164F7]/15 p-8 md:p-12 mb-10 overflow-hidden bg-[#060818]/30">
                     <div className="relative z-[2] text-center">
                         {/* Big hook title */}
                         <h2 className="text-3xl md:text-5xl lg:text-[56px] font-bold leading-[1.15] tracking-tight mb-8">

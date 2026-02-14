@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import TilqaiHero from "@/components/sections/tilqai-hero";
 import RealityHookSection from "@/components/sections/reality-hook-section";
 import DevelopmentSection from "@/components/sections/development-section";

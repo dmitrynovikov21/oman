@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../components/ui/MagicBento.css';
+
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -53,7 +59,47 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-manrope), var(--font-inter), system-ui, sans-serif;
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-montserrat), var(--font-inter), system-ui, sans-serif;
+  }
+
+  button,
+  a {
+    font-family: var(--font-manrope), var(--font-inter), system-ui, sans-serif;
+  }
+}
+
+/* SpotlightCard — radial gradient follows mouse */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(600px circle at var(--spot-x) var(--spot-y),
+      var(--spot-color),
+      transparent 40%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
 }

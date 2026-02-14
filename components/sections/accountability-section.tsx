@@ -1,7 +1,10 @@
 'use client';
 
+import { useRef } from 'react';
 import { useLanguage } from "@/lib/i18n/context";
 import { whyUsContent } from "@/lib/i18n/content";
+import MagicBentoCard from "@/components/ui/MagicBentoCard";
+import MagicBentoSpotlight from "@/components/ui/MagicBentoSpotlight";
 
 const cardIcons: Record<string, string> = {
     'lock': '/assets/icons/lock.png',
@@ -12,14 +15,17 @@ const cardIcons: Record<string, string> = {
 export default function AccountabilitySection() {
     const { lang } = useLanguage();
     const t = whyUsContent;
+    const gridRef = useRef<HTMLDivElement>(null);
 
     return (
-        <section className="relative bg-[#040405] py-20 overflow-hidden">
+        <section className="relative bg-[#040405] py-20 overflow-hidden bento-section">
+            <MagicBentoSpotlight gridRef={gridRef} />
+
             <div className="container mx-auto px-8 max-w-7xl relative z-10">
                 {/* Main container — card.png bg + #031836 border */}
                 <div className="relative rounded-lg border border-[#031836] overflow-hidden">
 
-                    {/* Background — clear.png, scaled up to make blue streaks prominent */}
+                    {/* Background — clear.png */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src="/assets/applications/clear.png"
@@ -27,10 +33,8 @@ export default function AccountabilitySection() {
                         className="absolute -bottom-[15%] -right-[10%] w-[75%] h-[120%] object-cover object-center pointer-events-none z-0 mix-blend-screen rotate-180"
                     />
 
-
-
                     {/* Content */}
-                    <div className="relative z-10 p-10 md:p-12 grid lg:grid-cols-[1fr_1.2fr] gap-10 items-start">
+                    <div ref={gridRef} className="relative z-10 p-10 md:p-12 grid lg:grid-cols-[1fr_1.2fr] gap-10 items-start">
                         {/* Left Column - Title & Description */}
                         <div className="flex flex-col justify-center min-h-full">
                             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
@@ -41,61 +45,80 @@ export default function AccountabilitySection() {
                             </p>
                         </div>
 
-                        {/* Right Column - Cards Grid: 60% top row, 40% bottom row */}
+                        {/* Right Column - Cards Grid with MagicBentoCard */}
                         <div className="grid grid-cols-2 gap-3">
-                            {/* Top row — 2 cards (60%) */}
+                            {/* Top row — 2 cards */}
                             {t.cards.slice(0, 2).map((card, i) => {
                                 const iconSrc = cardIcons[card.icon];
                                 return (
-                                    <div
+                                    <MagicBentoCard
                                         key={i}
                                         className="p-5 rounded-lg border border-[#031836] bg-[#031836]/60 backdrop-blur-md flex flex-col justify-start"
+                                        glowColor="0, 100, 247"
+                                        enableTilt={true}
+                                        enableParticles={true}
+                                        particleCount={6}
+                                        clickEffect={true}
                                     >
                                         {iconSrc && (
-                                            <div className="w-9 h-9 rounded-lg bg-[#0a1a3a]/40 backdrop-blur-xl border border-white/5 flex items-center justify-center mb-3 shrink-0">
+                                            <div className="relative z-10 w-9 h-9 rounded-lg bg-[#0a1a3a]/40 backdrop-blur-xl border border-white/5 flex items-center justify-center mb-3 shrink-0">
                                                 <img src={iconSrc} alt="" className="w-5 h-5" />
                                             </div>
                                         )}
-                                        <h3 className="text-base font-bold text-white mb-2 leading-snug">
+                                        <h3 className="relative z-10 text-base font-bold text-white mb-2 leading-snug">
                                             {card.title[lang]}
                                         </h3>
-                                        <p className="text-white/40 text-xs leading-relaxed">
+                                        <p className="relative z-10 text-white/40 text-xs leading-relaxed">
                                             {card.description[lang]}
                                         </p>
-                                    </div>
+                                    </MagicBentoCard>
                                 );
                             })}
 
-                            {/* Bottom row — "We stay on call" + accent "It works or we fix it" (40%) */}
+                            {/* Bottom row — "We stay on call" + accent "It works or we fix it" */}
                             {(() => {
                                 const supportCard = t.cards[2];
                                 const accentCard = t.cards[3];
                                 const supportIcon = cardIcons[supportCard.icon];
                                 return (
                                     <>
-                                        <div className="p-5 rounded-lg border border-[#031836] bg-[#031836]/60 backdrop-blur-md">
+                                        <MagicBentoCard
+                                            className="p-5 rounded-lg border border-[#031836] bg-[#031836]/60 backdrop-blur-md"
+                                            glowColor="0, 100, 247"
+                                            enableTilt={true}
+                                            enableParticles={true}
+                                            particleCount={6}
+                                            clickEffect={true}
+                                        >
                                             {supportIcon && (
-                                                <div className="w-9 h-9 rounded-lg bg-[#0a1a3a]/40 backdrop-blur-xl border border-white/5 flex items-center justify-center mb-4">
+                                                <div className="relative z-10 w-9 h-9 rounded-lg bg-[#0a1a3a]/40 backdrop-blur-xl border border-white/5 flex items-center justify-center mb-4">
                                                     <img src={supportIcon} alt="" className="w-5 h-5" />
                                                 </div>
                                             )}
-                                            <h3 className="text-base font-bold text-white mb-2 leading-snug">
+                                            <h3 className="relative z-10 text-base font-bold text-white mb-2 leading-snug">
                                                 {supportCard.title[lang]}
                                             </h3>
-                                            <p className="text-white/40 text-xs leading-relaxed">
+                                            <p className="relative z-10 text-white/40 text-xs leading-relaxed">
                                                 {supportCard.description[lang]}
                                             </p>
-                                        </div>
+                                        </MagicBentoCard>
 
                                         {/* Accent card — bright blue gradient */}
-                                        <div className="p-5 rounded-lg border border-blue-400/30 bg-gradient-to-br from-[#0066FF]/80 to-[#0044CC]/90 backdrop-blur-md flex flex-col justify-center">
-                                            <h3 className="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">
+                                        <MagicBentoCard
+                                            className="p-5 rounded-lg border border-blue-400/30 bg-gradient-to-br from-[#0066FF]/80 to-[#0044CC]/90 backdrop-blur-md flex flex-col justify-center"
+                                            glowColor="255, 255, 255"
+                                            enableTilt={true}
+                                            enableParticles={true}
+                                            particleCount={8}
+                                            clickEffect={true}
+                                        >
+                                            <h3 className="relative z-10 text-xl md:text-2xl font-bold text-white mb-3 leading-snug">
                                                 {accentCard.title[lang]}
                                             </h3>
-                                            <p className="text-white/70 text-sm leading-relaxed">
+                                            <p className="relative z-10 text-white/70 text-sm leading-relaxed">
                                                 {accentCard.description[lang]}
                                             </p>
-                                        </div>
+                                        </MagicBentoCard>
                                     </>
                                 );
                             })()}

@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import { Inter } from "next/font/google";
+import { Inter, Montserrat, Manrope } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -8,6 +8,18 @@ import { twMerge } from "tailwind-merge";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-montserrat",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-manrope",
 });
 
 function cn(...inputs: ClassValue[]) {
@@ -32,7 +44,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={cn("min-h-screen bg-background antialiased relative", inter.className)}>
+      <body className={cn("min-h-screen bg-background antialiased relative", inter.className, montserrat.variable, manrope.variable)}>
         {/* Layer 1: Dark base background */}
         <div className="fixed inset-0 z-[-3] pointer-events-none bg-[#040405]" />
         {/* Layer 2: Star particles — z-[-1] so section bg images at z-[-2] sit below */}

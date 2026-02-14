@@ -1,8 +1,12 @@
 'use client';
 
-import Link from "next/link";
+import { useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { useLanguage } from "@/lib/i18n/context";
-import { realityContent } from "@/lib/i18n/content";
+import MagicBentoCard from "@/components/ui/MagicBentoCard";
+import MagicBentoSpotlight from "@/components/ui/MagicBentoSpotlight";
+
+const LaserFlow = dynamic(() => import('@/components/ui/LaserFlow'), { ssr: false });
 
 const developmentContent = {
     badge: { en: 'How we deliver AI that actually works', ar: 'كيف نقدم ذكاءً اصطناعياً يعمل فعلاً' },
@@ -27,28 +31,16 @@ const developmentContent = {
 
 /**
  * "Development, integration, training" Section
- * Cross-shaped 3-layer card arrangement with energy beam
+ * Cross-shaped 3-layer card arrangement with MagicBento effects
  */
 export default function DevelopmentSection() {
     const { lang, isRTL } = useLanguage();
     const t = developmentContent;
+    const gridRef = useRef<HTMLDivElement>(null);
 
     return (
-        <section className="relative py-12 md:py-24 lg:py-32 overflow-x-clip">
-            {/* Energy beam bg — MOBILE (below md) */}
-            <img
-                src="/assets/reality/bg-main.png"
-                alt=""
-                className="absolute pointer-events-none z-[-2] md:hidden"
-                style={{ top: isRTL ? '85%' : '85%', ...(isRTL ? { left: '27%' } : { right: '27%' }), transform: 'translateY(-50%)', width: '46%', height: '200%', objectFit: 'contain' }}
-            />
-            {/* Energy beam bg — DESKTOP (md+) */}
-            <img
-                src="/assets/reality/bg-main.png"
-                alt=""
-                className="absolute pointer-events-none z-[-2] hidden md:block"
-                style={{ top: '50%', ...(isRTL ? { left: '10%' } : { right: '10%' }), transform: 'translateY(-50%)', width: '35%', height: '150%', objectFit: 'contain' }}
-            />
+        <section className="relative py-12 md:py-24 lg:py-32 overflow-x-clip bento-section">
+            <MagicBentoSpotlight gridRef={gridRef} spotlightRadius={700} />
 
             <div className="container mx-auto px-8 max-w-7xl relative">
                 <div className="grid lg:grid-cols-[40%_1fr] gap-8 lg:gap-12 items-center overflow-visible">
@@ -59,7 +51,7 @@ export default function DevelopmentSection() {
                             <span className="text-white/80 text-sm">{t.badge[lang]}</span>
                         </div>
 
-                        {/* Main heading — "Development," white, "integration," + "training" blue */}
+                        {/* Main heading */}
                         <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.1] tracking-tight mb-8">
                             <span className="text-white block">{t.heading[lang][0]}</span>
                             <span className="text-[#3B82F6] block">{t.heading[lang][1]}</span>
@@ -80,40 +72,82 @@ export default function DevelopmentSection() {
                     {/* Right side — Inverted-T card composition */}
                     <div className="relative flex items-center justify-center overflow-visible min-h-[280px] md:min-h-[480px]">
 
+                        {/* LaserFlow WebGL background */}
+                        <div className="absolute inset-0 z-0 pointer-events-none -left-[5%] md:left-[10%] top-[50%] md:top-[40%]" style={{ opacity: 0.7 }}>
+                            <LaserFlow
+                                horizontalBeamOffset={0.0}
+                                verticalBeamOffset={0.0}
+                                color="#405ef2"
+                                horizontalSizing={0.5}
+                                verticalSizing={2}
+                                wispDensity={1}
+                                wispSpeed={15}
+                                wispIntensity={5}
+                                flowSpeed={0.35}
+                                flowStrength={0.25}
+                                fogIntensity={0.45}
+                                fogScale={0.3}
+                                fogFallSpeed={0.6}
+                                decay={1.1}
+                                falloffStart={1.2}
+                            />
+                        </div>
+
                         {/* Card composition — inverted-T arrangement */}
-                        <div className={`relative overflow-visible w-[360px] h-[300px] md:w-[540px] md:h-[460px] mx-auto ${isRTL ? 'md:-translate-x-[10%]' : 'md:translate-x-[10%]'}`}>
+                        <div ref={gridRef} className={`relative overflow-visible w-[360px] h-[300px] md:w-[540px] md:h-[460px] mx-auto ${isRTL ? 'md:-translate-x-[10%]' : 'md:translate-x-[10%]'}`}>
 
                             {/* Human Layer — top center, z-20 (in front) */}
                             <div className="absolute z-20 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-0 left-1/2 -translate-x-1/2">
-                                <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
+                                <MagicBentoCard
+                                    className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/10"
+                                    glowColor="0, 100, 247"
+                                    enableTilt={true}
+                                    enableParticles={true}
+                                    particleCount={6}
+                                    clickEffect={true}
+                                >
                                     <img src="/assets/reality/card-1.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
                                     <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
                                         <h3 className="text-white font-bold text-sm md:text-lg leading-tight">{t.cards[0].title[lang]}</h3>
                                         <p className="text-white/70 text-[11px] md:text-sm leading-snug">{t.cards[0].desc[lang]}</p>
                                     </div>
-                                </div>
+                                </MagicBentoCard>
                             </div>
 
                             {/* AI Layer — bottom left, z-10 */}
                             <div className="absolute z-30 md:z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[46%] md:top-[36%] start-0">
-                                <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
+                                <MagicBentoCard
+                                    className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/10"
+                                    glowColor="0, 100, 247"
+                                    enableTilt={true}
+                                    enableParticles={true}
+                                    particleCount={6}
+                                    clickEffect={true}
+                                >
                                     <img src="/assets/reality/card-2.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
                                     <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
                                         <h3 className="text-white font-bold text-sm md:text-lg leading-tight">{t.cards[1].title[lang]}</h3>
                                         <p className="text-white/70 text-[11px] md:text-sm leading-snug">{t.cards[1].desc[lang]}</p>
                                     </div>
-                                </div>
+                                </MagicBentoCard>
                             </div>
 
                             {/* Infrastructure Layer — bottom right, z-10 */}
-                            <div className="absolute z-30 md:z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[41%] md:top-[45%] end-0 md:-end-4">
-                                <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30 ring-1 ring-blue-400/20">
+                            <div className="absolute z-30 md:z-10 w-[150px] h-[150px] md:w-[220px] md:h-[220px] top-[38%] md:top-[42%] end-0 md:-end-4">
+                                <MagicBentoCard
+                                    className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/10"
+                                    glowColor="0, 100, 247"
+                                    enableTilt={true}
+                                    enableParticles={true}
+                                    particleCount={6}
+                                    clickEffect={true}
+                                >
                                     <img src="/assets/reality/card-3.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
                                     <div className="relative z-10 p-3 md:p-5 h-full flex flex-col justify-between">
                                         <h3 className="text-white font-bold text-sm md:text-lg leading-tight">{t.cards[2].title[lang]}</h3>
                                         <p className="text-white/70 text-[11px] md:text-sm leading-snug">{t.cards[2].desc[lang]}</p>
                                     </div>
-                                </div>
+                                </MagicBentoCard>
                             </div>
 
                         </div>

@@ -1,15 +1,21 @@
 'use client';
 
+import { useRef } from 'react';
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 import { industriesContent } from "@/lib/i18n/content";
+import MagicBentoCard from "@/components/ui/MagicBentoCard";
+import MagicBentoSpotlight from "@/components/ui/MagicBentoSpotlight";
 
 export default function IndustriesSection() {
     const { lang } = useLanguage();
     const t = industriesContent;
+    const gridRef = useRef<HTMLDivElement>(null);
 
     return (
-        <section className="relative py-24 overflow-hidden">
+        <section className="relative py-24 overflow-hidden bento-section">
+            <MagicBentoSpotlight gridRef={gridRef} />
+
             <div className="container mx-auto px-8 max-w-7xl">
                 {/* Header — grid layout: title left, info center-right */}
                 <div className="flex flex-col md:flex-row md:items-center gap-6 mb-10">
@@ -33,28 +39,35 @@ export default function IndustriesSection() {
                     </div>
                 </div>
 
-                {/* Industry Cards — full-width, tight gap */}
-                <div className="grid md:grid-cols-3 gap-2 justify-items-center">
+                {/* Industry Cards — MagicBentoCard with particles + spotlight */}
+                <div ref={gridRef} className="grid md:grid-cols-3 gap-6 md:gap-2 justify-items-center">
                     {t.items.map((industry, index) => (
-                        <div
+                        <MagicBentoCard
                             key={index}
-                            className="relative rounded-[24px] h-[340px] w-full max-w-[380px] flex flex-col p-8 group overflow-hidden transition-all duration-500"
+                            className="relative rounded-[24px] h-[340px] w-full max-w-[380px] flex flex-col group transition-all duration-500"
+                            glowColor="0, 100, 247"
+                            enableTilt={true}
+                            enableParticles={true}
+                            particleCount={8}
+                            enableBorderGlow={false}
+                            clickEffect={true}
                         >
-                            {/* Card background image - contains glow, border, and rounded corners */}
+                            {/* Card background image — object-cover avoids corner distortion */}
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src="/assets/why-us/card.png"
                                 alt=""
-                                className="absolute inset-0 w-full h-full object-fill pointer-events-none opacity-85"
+                                className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
                             />
 
                             {/* Content Layer */}
-                            <div className="relative z-10 flex flex-col h-full">
-                                {/* Icon Container */}
-                                <div className="w-12 h-12 mb-6 rounded-xl bg-[#0a1a3a]/40 backdrop-blur-xl border border-white/5 flex items-center justify-center group-hover:bg-[#0a1a3a]/50 transition-colors">
+                            <div className="relative z-10 flex flex-col h-full p-8">
+                                {/* Icon Container — large & prominent */}
+                                <div className="w-[67px] h-[67px] mb-6 rounded-2xl bg-[#0a1a3a]/50 backdrop-blur-xl border border-white/8 flex items-center justify-center group-hover:bg-[#0a1a3a]/60 transition-colors">
                                     <img
                                         src={`/assets/why-us/icon-${index + 1}.png`}
                                         alt=""
-                                        className="w-6 h-6 object-contain opacity-90"
+                                        className="w-10 h-10 object-contain opacity-90"
                                     />
                                 </div>
 
@@ -68,7 +81,7 @@ export default function IndustriesSection() {
                                     {industry.description[lang]}
                                 </p>
                             </div>
-                        </div>
+                        </MagicBentoCard>
                     ))}
                 </div>
 

@@ -44,9 +44,14 @@ export default function TilqaiHero() {
             {/* Navigation - TWO separate containers as per Figma */}
             <nav className="relative z-10 px-8 py-6 max-w-7xl mx-auto">
                 <div className="flex items-stretch gap-4">
-                    {/* LEFT: Logo container - takes most width, pill-shaped */}
-                    <div className="flex-1 flex items-center px-6 h-12 border border-white/20 rounded-full bg-white/5 backdrop-blur-sm">
-                        <span className="text-white font-medium text-lg tracking-wide">tilqai</span>
+                    {/* LEFT: Logo + Nav links - logo left, links centered */}
+                    <div className="flex-1 flex items-center gap-6 px-6 h-12 border border-white/20 rounded-full bg-white/5 backdrop-blur-sm">
+                        <img src="/brand/logo-dark.jpeg" alt="tilqai" className="h-9 w-auto object-contain rounded-sm" />
+                        <div className="hidden md:flex items-center gap-5 flex-1 justify-center">
+                            <a href="#applications" className="text-white/60 text-sm hover:text-white transition-colors" style={{ fontFamily: 'var(--font-manrope)' }}>{lang === 'ar' ? 'الخدمات' : 'Services'}</a>
+                            <a href="#about" className="text-white/60 text-sm hover:text-white transition-colors" style={{ fontFamily: 'var(--font-manrope)' }}>{lang === 'ar' ? 'عنّا' : 'About'}</a>
+                            <a href="#contact" className="text-white/60 text-sm hover:text-white transition-colors" style={{ fontFamily: 'var(--font-manrope)' }}>{lang === 'ar' ? 'تواصل' : 'Contact'}</a>
+                        </div>
                     </div>
 
                     {/* RIGHT: Language switcher - compact pill, same height */}
@@ -62,26 +67,29 @@ export default function TilqaiHero() {
             </nav>
 
             {/* Hero Content - centered */}
-            <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 pt-10 md:pt-20 pb-40">
+            <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 pt-10 md:pt-20 pb-6 md:pb-20">
                 {/* Oman badge - centered above heading */}
                 <div className="mb-8 flex items-center gap-2 px-4 py-2 rounded-full border border-[#0164F7]/20 bg-transparent backdrop-blur-sm shadow-[0_0_15px_rgba(1,100,247,0.08),inset_0_1px_0_0_rgba(1,100,247,0.1)]">
                     <span className="text-lg">🇴🇲</span>
-                    <span className="text-white/80 text-sm font-medium">{t.badge[lang]}</span>
+                    <span className="text-white/80 text-sm font-medium" style={{ fontFamily: 'var(--font-manrope)' }}>{t.badge[lang]}</span>
                 </div>
 
-                <h1 className="text-5xl md:text-6xl lg:text-[72px] font-bold leading-[1.1] tracking-tight max-w-5xl mx-auto">
-                    <span className="text-white">{t.headline[lang]}</span>
+                <h1 className="text-5xl md:text-6xl lg:text-[72px] font-bold leading-[1.1] tracking-tight max-w-5xl mx-auto" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                    <span className="text-white">
+                        {lang === 'en' ? (<>What if your work<br />runs by itself.</>) : t.headline[lang]}
+                    </span>
                 </h1>
 
                 {/* Subheading */}
-                <p className="max-w-2xl text-white/60 text-lg md:text-xl mt-8 mb-10 leading-relaxed">
+                <p className="max-w-2xl text-white/60 text-lg md:text-xl mt-8 mb-10 leading-relaxed" style={{ fontFamily: 'var(--font-manrope)' }}>
                     {t.subheadline[lang]}
                 </p>
 
                 {/* CTA Button */}
                 <Link
                     href="#contact"
-                    className="group flex items-center gap-2 px-8 py-4 bg-[#3B82F6] text-white font-medium rounded-full hover:bg-[#2563EB] transition-colors"
+                    className="group flex items-center gap-2 px-8 py-4 bg-[#0066FF] text-white font-semibold rounded-full hover:bg-[#0452C7] transition-colors"
+                    style={{ fontFamily: 'var(--font-montserrat)' }}
                 >
                     <span>{t.cta[lang]}</span>
                     <svg

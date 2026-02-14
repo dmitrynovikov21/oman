@@ -1,7 +1,10 @@
 'use client';
 
+import { useRef } from 'react';
 import { useLanguage } from "@/lib/i18n/context";
 import { applicationsContent } from "@/lib/i18n/content";
+import MagicBentoCard from "@/components/ui/MagicBentoCard";
+import MagicBentoSpotlight from "@/components/ui/MagicBentoSpotlight";
 
 /**
  * Icon paths — AI-generated solid-blue-fill PNGs matching Industries style
@@ -18,14 +21,17 @@ const iconKeys = ['workflow', 'crm', 'hr', 'support', 'compliance'];
 
 /**
  * Applications Section — "What becomes automatic"
- * Full-width card grid, no media asset
+ * Full-width card grid with MagicBento effects
  */
 export default function ApplicationsSection() {
     const { lang } = useLanguage();
     const t = applicationsContent;
+    const gridRef = useRef<HTMLDivElement>(null);
 
     return (
-        <section id="applications" className="relative py-24 overflow-hidden">
+        <section id="applications" className="relative py-24 overflow-hidden bento-section">
+            <MagicBentoSpotlight gridRef={gridRef} />
+
             {/* Subtle background glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -44,28 +50,30 @@ export default function ApplicationsSection() {
                 </div>
 
                 {/* Card Grid: 3 + 2 layout */}
-                <div className="grid md:grid-cols-3 gap-5 mb-5">
-                    {t.items.slice(0, 3).map((app, index) => (
-                        <ApplicationCard
-                            key={index}
-                            icon={iconPaths[iconKeys[index]]}
-                            title={app.title[lang]}
-                            description={app.description[lang]}
-                            index={index}
-                        />
-                    ))}
-                </div>
+                <div ref={gridRef}>
+                    <div className="grid md:grid-cols-3 gap-5 mb-5">
+                        {t.items.slice(0, 3).map((app, index) => (
+                            <ApplicationCard
+                                key={index}
+                                icon={iconPaths[iconKeys[index]]}
+                                title={app.title[lang]}
+                                description={app.description[lang]}
+                                index={index}
+                            />
+                        ))}
+                    </div>
 
-                <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
-                    {t.items.slice(3).map((app, index) => (
-                        <ApplicationCard
-                            key={index + 3}
-                            icon={iconPaths[iconKeys[index + 3]]}
-                            title={app.title[lang]}
-                            description={app.description[lang]}
-                            index={index + 3}
-                        />
-                    ))}
+                    <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+                        {t.items.slice(3).map((app, index) => (
+                            <ApplicationCard
+                                key={index + 3}
+                                icon={iconPaths[iconKeys[index + 3]]}
+                                title={app.title[lang]}
+                                description={app.description[lang]}
+                                index={index + 3}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
@@ -84,10 +92,14 @@ function ApplicationCard({
     index: number;
 }) {
     return (
-        <div className="group relative p-6 md:p-8 rounded-xl border border-[#0164F7]/20 bg-transparent hover:border-[#0164F7]/35 transition-all duration-500 shadow-[0_0_15px_rgba(1,100,247,0.08),inset_0_1px_0_0_rgba(1,100,247,0.1)]">
-            {/* Hover glow */}
-            <div className="absolute inset-0 rounded-xl bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
+        <MagicBentoCard
+            className="p-6 md:p-8 rounded-xl border border-[#0164F7]/20 bg-transparent shadow-[0_0_15px_rgba(1,100,247,0.08),inset_0_1px_0_0_rgba(1,100,247,0.1)]"
+            glowColor="0, 100, 247"
+            enableTilt={true}
+            enableParticles={true}
+            particleCount={6}
+            clickEffect={true}
+        >
             <div className="relative z-10">
                 {/* Icon + Number */}
                 <div className="flex items-center justify-between mb-6">
@@ -100,13 +112,13 @@ function ApplicationCard({
                 </div>
 
                 {/* Content */}
-                <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-tight group-hover:text-blue-100 transition-colors">
+                <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-tight">
                     {title}
                 </h3>
                 <p className="text-white/50 text-xs md:text-sm leading-relaxed">
                     {description}
                 </p>
             </div>
-        </div>
+        </MagicBentoCard>
     );
 }

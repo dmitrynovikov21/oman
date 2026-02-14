@@ -55,12 +55,28 @@ export default function ContactSection() {
                     </p>
                 </div>
 
-                {/* Calendly Widget — full-width card */}
-                <div className="rounded-2xl overflow-hidden">
+                {/* Calendly Widget — matches container width */}
+                <style>{`
+                    .calendly-inline-widget,
+                    .calendly-inline-widget iframe {
+                        background: #000000 !important;
+                        background-color: #000000 !important;
+                        border-radius: 0 !important;
+                    }
+                    .calendly-inline-widget .calendly-badge-widget {
+                        display: none !important;
+                    }
+                    /* Force dark background on any Calendly-injected elements */
+                    .calendly-inline-widget > div,
+                    .calendly-inline-widget > div > div {
+                        background: #000000 !important;
+                    }
+                `}</style>
+                <div className="w-full overflow-hidden" style={{ background: 'red' }}>
                     <div
-                        className="calendly-inline-widget"
-                        data-url="https://calendly.com/futurist-ai/30min?hide_gdpr_banner=1"
-                        style={{ minWidth: '320px', height: '580px' }}
+                        className="calendly-inline-widget w-full"
+                        data-url="https://calendly.com/futurist-ai/30min?hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=0066ff"
+                        style={{ minWidth: '320px', width: '100%', height: '700px', background: '#000000' }}
                     />
                 </div>
             </div>

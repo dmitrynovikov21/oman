@@ -22,9 +22,7 @@ export default function TilqaiFooter() {
                 {/* Top row */}
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
                     {/* Logo */}
-                    <span className="text-white font-bold text-2xl tracking-wide">
-                        tilqai
-                    </span>
+                    <img src="/brand/logo-dark.jpeg" alt="tilqai" className="h-12 w-auto object-contain rounded-sm" />
 
                     {/* Email */}
                     <a
@@ -40,7 +38,8 @@ export default function TilqaiFooter() {
                     <span className="text-white/90 text-lg">
                         {t.tagline[lang]}
                     </span>
-                    <span className="text-white/90">
+                    <span className="text-white/90 flex items-center gap-2">
+                        <span className="text-xl">🇴🇲</span>
                         {t.location[lang]}
                     </span>
                 </div>
