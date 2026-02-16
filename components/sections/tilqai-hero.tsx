@@ -1,8 +1,13 @@
 'use client';
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useLanguage } from "@/lib/i18n/context";
 import { heroContent } from "@/lib/i18n/content";
+
+const FloatingLines = dynamic(() => import("@/components/ui/FloatingLines"), {
+    ssr: false,
+});
 
 export default function TilqaiHero() {
     const { lang, toggleLang } = useLanguage();
@@ -10,36 +15,32 @@ export default function TilqaiHero() {
 
     return (
         <section className="relative min-h-screen overflow-hidden">
-            {/* Layer 1: Main hero media (spirals) — deepest */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden z-[-2]">
-                <img
-                    src="/assets/hero/hero-left.png"
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover"
+            {/* FloatingLines WebGL background */}
+            <div className="absolute inset-0 z-[0]">
+                <FloatingLines
+                    linesGradient={["#001cf0", "#2F4BC0", "#d1e0ff"]}
+                    animationSpeed={0.7}
+                    interactive
+                    bendRadius={5}
+                    bendStrength={-0.5}
+                    mouseDamping={0.05}
+                    parallax
+                    parallaxStrength={0.2}
                 />
             </div>
 
-            {/* Layer 2: Gray squares — top and bottom vignettes */}
-            <div className="absolute inset-x-0 top-0 h-[30%] pointer-events-none z-[-1]"
-                style={{ background: 'linear-gradient(to bottom, rgba(12,12,18,0.7), transparent)' }} />
-            <div className="absolute inset-x-0 bottom-0 h-[30%] pointer-events-none z-[-1]"
-                style={{ background: 'linear-gradient(to top, rgba(12,12,18,0.7), transparent)' }} />
+            {/* Star particles overlay — above FloatingLines */}
+            <div className="absolute inset-0 pointer-events-none z-[1]" style={{ mixBlendMode: 'screen' }}>
+                <img
+                    src="/assets/hero/Clip path group.png"
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover opacity-60"
+                />
+            </div>
 
-            {/* Layer 3: Perspective grid lines — above gray squares */}
-            <div className="absolute inset-x-0 top-0 pointer-events-none z-[0] opacity-40">
-                <img
-                    src="/assets/hero/bg-lines-2.png"
-                    alt=""
-                    className="w-full h-auto"
-                />
-            </div>
-            <div className="absolute inset-x-0 bottom-0 pointer-events-none z-[0] opacity-40">
-                <img
-                    src="/assets/hero/bg-lines-1.png"
-                    alt=""
-                    className="w-full h-auto"
-                />
-            </div>
+            {/* Bottom gradient — seamless transition to next section */}
+            <div className="absolute inset-x-0 bottom-0 h-40 pointer-events-none z-[2]"
+                style={{ background: 'linear-gradient(to bottom, transparent, #040405)' }} />
 
             {/* Navigation - TWO separate containers as per Figma */}
             <nav className="relative z-10 px-8 py-6 max-w-7xl mx-auto">
